@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Fresh Smoothie Bowl",
+    "price": 12.99,
+    "kcal": 320,
+    "tags": ["Healthy", "Vegan", "Featured"],
+    "image": "/assets/plate1.jpg",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Rice & Fresh Salad",
+    "price": 15.99,
+    "kcal": 450,
+    "tags": ["Healthy", "Vegetarian", "Gluten-free"],
+    "image": "/assets/plate2.jpg",
+    "featured": false
+  },
+  {
+    "id": 3,
+    "title": "Steak & Potatoes",
+    "price": 28.99,
+    "kcal": 680,
+    "tags": ["Premium", "Protein", "Classic"],
+    "image": "/assets/plate3.jpg",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "title": "Beef Noodles",
+    "price": 18.99,
+    "kcal": 520,
+    "tags": ["Asian", "Spicy", "Comfort"],
+    "image": "/assets/plate4.jpg",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "title": "Avocado Bowl",
+    "price": 16.99,
+    "kcal": 380,
+    "tags": ["Healthy", "Vegan", "Fresh"],
+    "image": "/assets/plate5.jpg",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "title": "Mediterranean Salad",
+    "price": 14.99,
+    "kcal": 290,
+    "tags": ["Healthy", "Mediterranean", "Light"],
+    "image": "/assets/plate6.jpg",
+    "featured": false
+  },
+  {
+    "id": 7,
+    "title": "Tomato Soup",
+    "price": 9.99,
+    "kcal": 180,
+    "tags": ["Soup", "Vegetarian", "Warm"],
+    "image": "/assets/plate1.jpg",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "title": "Grilled Salmon",
+    "price": 24.99,
+    "kcal": 420,
+    "tags": ["Seafood", "Healthy", "Omega-3"],
+    "image": "/assets/plate2.jpg",
+    "featured": false
+  }
+]
