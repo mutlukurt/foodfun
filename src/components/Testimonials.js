@@ -17,7 +17,7 @@ export class Testimonials {
 
   async loadTestimonials() {
     try {
-      const response = await fetch('/src/data/testimonials.json');
+      const response = await fetch('src/data/testimonials.json');
       this.testimonials = await response.json();
     } catch (error) {
       console.error('Error loading testimonials:', error);

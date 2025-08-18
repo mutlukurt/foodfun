@@ -15,7 +15,7 @@ export class MenuCarousel {
 
   async loadMenuData() {
     try {
-      const response = await fetch('/src/data/menu.json');
+      const response = await fetch('src/data/menu.json');
       this.menuData = await response.json();
     } catch (error) {
       console.error('Error loading menu data:', error);
