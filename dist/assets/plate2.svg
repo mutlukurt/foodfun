@@ -1,0 +1,6 @@
+<svg width="280" height="200" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="140" cy="100" rx="120" ry="80" fill="#F5F5DC" stroke="#D2B48C" stroke-width="3"/>
+  <rect x="80" y="60" width="120" height="80" fill="#90EE90" rx="10"/>
+  <circle cx="140" cy="100" r="30" fill="#32CD32"/>
+  <text x="140" y="190" text-anchor="middle" fill="#8B4513" font-size="14" font-weight="bold">Rice & Salad</text>
+</svg>
