@@ -39,6 +39,8 @@ export class About {
     image.src = '/assets/plate-mediterranean-salad.svg';
     image.alt = 'Fresh Mediterranean salad illustration with greens and veggies';
     image.loading = 'lazy';
+    image.width = 800;
+    image.height = 600;
     
     rightSide.appendChild(image);
     
