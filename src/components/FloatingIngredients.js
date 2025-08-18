@@ -22,8 +22,11 @@ export class FloatingIngredients {
 
   async createIngredientSVG(ingredient) {
     try {
+      // Create base-aware SVG URL
+      const svgUrl = new URL(`../assets/ing-${ingredient.name}.svg`, import.meta.url).href;
+      
       // Try to fetch the SVG file
-      const response = await fetch(`assets/ing-${ingredient.name}.svg`);
+      const response = await fetch(svgUrl);
       if (response.ok) {
         const svgText = await response.text();
         const parser = new DOMParser();

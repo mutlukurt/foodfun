@@ -102,11 +102,26 @@ export class Hero {
     
     // Hero image
     const heroImage = document.createElement('img');
-    heroImage.src = 'assets/hero.svg';
+    
+    // Create base-aware image URL
+    try {
+      const imgUrl = new URL('../assets/hero.svg', import.meta.url).href;
+      heroImage.src = imgUrl;
+    } catch (error) {
+      console.warn('Failed to resolve hero image URL:', error);
+      // Fallback to relative path
+      heroImage.src = 'assets/hero.svg';
+    }
+    
     heroImage.alt = 'Decorative noodles bowl illustration in hero circle';
     heroImage.className = 'hero-image';
     heroImage.width = 400;
     heroImage.height = 400;
+    
+    // Add error handling for hero image
+    heroImage.onerror = () => {
+      console.warn('Failed to load hero image');
+    };
     
     // Organic shapes
     const shapesContainer = document.createElement('div');
