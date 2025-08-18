@@ -1,3 +1,6 @@
+import './styles/global.css';
+import './styles/components.css';
+import './styles/utilities.css';
 import { updateScrollProgress, createScrollObserver } from './utils.js';
 import { NavBar } from './components/NavBar.js';
 import { Hero } from './components/Hero.js';

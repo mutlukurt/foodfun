@@ -36,7 +36,7 @@ export class About {
     rightSide.className = 'about-image';
     
     const image = document.createElement('img');
-    image.src = '/assets/salad.png';
+    image.src = '/assets/salad.svg';
     image.alt = 'Fresh salad ingredients showcasing our commitment to quality';
     image.loading = 'lazy';
     

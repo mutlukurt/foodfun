@@ -101,7 +101,7 @@ export class Hero {
     
     // Hero image
     const heroImage = document.createElement('img');
-    heroImage.src = '/assets/hero.jpg';
+    heroImage.src = '/assets/hero.svg';
     heroImage.alt = 'Delicious food presentation';
     heroImage.className = 'hero-image';
     
@@ -123,9 +123,9 @@ export class Hero {
     ingredientsContainer.className = 'hero-ingredients';
     
     const ingredients = [
-      { src: '/assets/salad.png', alt: 'Fresh salad ingredients' },
-      { src: '/assets/plate1.jpg', alt: 'Fresh vegetables' },
-      { src: '/assets/plate2.jpg', alt: 'Herbs and spices' }
+      { src: '/assets/salad.svg', alt: 'Fresh salad ingredients' },
+      { src: '/assets/plate1.svg', alt: 'Fresh vegetables' },
+      { src: '/assets/plate2.svg', alt: 'Herbs and spices' }
     ];
     
     ingredients.forEach((ingredient, index) => {
