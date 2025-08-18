@@ -66,12 +66,28 @@ export class WhyUs {
 
   createIconImg(src, alt) {
     const img = document.createElement('img');
-    img.src = src;
+    
+    // Create base-aware image URL
+    try {
+      const imgUrl = new URL(`../${src}`, import.meta.url).href;
+      img.src = imgUrl;
+    } catch (error) {
+      console.warn(`Failed to resolve icon URL for ${src}:`, error);
+      // Fallback to relative path
+      img.src = src;
+    }
+    
     img.alt = alt;
     img.width = 60;
     img.height = 60;
     img.loading = 'lazy';
     img.style.filter = 'invert(var(--icon-invert, 0))';
+    
+    // Add error handling for icon images
+    img.onerror = () => {
+      console.warn(`Failed to load icon: ${src}`);
+    };
+    
     return img;
   }
 }

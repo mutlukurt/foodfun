@@ -36,11 +36,26 @@ export class About {
     rightSide.className = 'about-image';
     
     const image = document.createElement('img');
-    image.src = 'assets/plate-mediterranean-salad.svg';
+    
+    // Create base-aware image URL
+    try {
+      const imgUrl = new URL('../assets/plate-mediterranean-salad.svg', import.meta.url).href;
+      image.src = imgUrl;
+    } catch (error) {
+      console.warn('Failed to resolve about image URL:', error);
+      // Fallback to relative path
+      image.src = 'assets/plate-mediterranean-salad.svg';
+    }
+    
     image.alt = 'Fresh Mediterranean salad illustration with greens and veggies';
     image.loading = 'lazy';
     image.width = 800;
     image.height = 600;
+    
+    // Add error handling for about image
+    image.onerror = () => {
+      console.warn('Failed to load about image');
+    };
     
     rightSide.appendChild(image);
     
