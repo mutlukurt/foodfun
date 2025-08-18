@@ -1,320 +1,191 @@
-# 🍽️ FoodFun Restaurant Landing Page
+**Live Demo → https://mutlukurt.github.io/foodfun/**
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-✅-success) ![Tech](https://img.shields.io/badge/Tech-Vite%20%2B%20Vanilla%20JS%20%2B%20HTML%20%2B%20CSS-blue) ![License](https://img.shields.io/badge/License-MIT-green)
 
-A modern, responsive restaurant landing page built with **Vite**, **Vanilla JavaScript**, **HTML**, and **CSS**. Features a beautiful design with dark/light theme support, smooth animations, and excellent accessibility.
+# FoodFun — Restaurant Landing (Vite + Vanilla JS)
 
-![FoodFun Restaurant](https://img.shields.io/badge/FoodFun-Restaurant%20Landing%20Page-brightgreen)
-![Vite](https://img.shields.io/badge/Built%20with-Vite-646CFF)
-![Vanilla JS](https://img.shields.io/badge/JavaScript-Vanilla%20JS-F7DF1E)
-![Responsive](https://img.shields.io/badge/Responsive-Yes-4CAF50)
-![Accessibility](https://img.shields.io/badge/Accessibility-WCAG%20AA-2196F3)
+Modern, accessible, dark/light, responsive, menu carousel, testimonials, newsletter, localStorage.
 
-## ✨ Features
+## Table of Contents
 
-- 🎨 **Dark/Light Theme Toggle** - Persistent theme switching with system preference detection
-- 📱 **Fully Responsive** - Optimized for all devices (360px to 1440px+)
-- ♿ **Accessibility First** - WCAG AA compliant with proper ARIA labels and keyboard navigation
-- 🚀 **Performance Optimized** - Lazy loading, intersection observers, and efficient animations
-- 🎭 **Smooth Animations** - Scroll-triggered animations with reduced motion support
-- 🛒 **Interactive Menu** - Mobile carousel with add-to-cart functionality
-- 💬 **Testimonials Slider** - Auto-advancing carousel with pause on hover/focus
-- 📧 **Newsletter Subscription** - Email validation with localStorage persistence
-- 🎯 **Scroll Progress Bar** - Visual scroll indicator at the top
-- 🔍 **SEO Optimized** - Meta tags, Open Graph, and structured data
+- [Live Demo](#live-demo)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+- [Scripts](#scripts)
+- [Project Structure](#project-structure)
+- [Design Tokens](#design-tokens)
+- [Accessibility](#accessibility)
+- [Performance](#performance)
+- [Deployment](#deployment)
+- [Changelog](#changelog)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
 
-## 🚀 Quick Start
+## Features
 
-### Prerequisites
-- Node.js 16+ 
-- npm or yarn
+- [x] Single-page landing (Nav → Hero → About → Why Us → Menu → Testimonials → Newsletter → Footer)
+- [x] Dark/Light mode (persisted with localStorage)
+- [x] Sticky navbar + mobile hamburger (body scroll-lock)
+- [x] Menu carousel (cards with CTA, scroll-snap on mobile)
+- [x] Testimonials slider (auto-play, pause on hover/focus, keyboard arrows)
+- [x] Toast system (add-to-cart, subscribe)
+- [x] Scroll reveal (IntersectionObserver, motion-safe)
+- [x] Responsive 320–1440px
+- [x] A11y: focus-visible rings, alt text, tap targets ≥ 44px
+- [x] Performance polish: pre-sized images, lazy-loading
+- [x] SEO: meta/OG/manifest, favicon
+- [x] GitHub Pages deployment
 
-### Installation
+## Tech Stack
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/foodfun.git
-   cd foodfun
-   ```
+- **Vite** (base-aware config), **Vanilla JS** modules, **modern CSS** (custom properties, clamp(), aspect-ratio)
+- No UI libs; all components custom
+- **Dev Dependencies:**
+  - `gh-pages` ^6.3.0
+  - `vite` ^5.0.0
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## Screenshots
 
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
+### Row 1: Light vs Dark Hero
+![Light Mode](./docs/screen-light.png) (TODO)
+![Dark Mode](./docs/screen-dark.png) (TODO)
 
-4. **Open in browser**
-   Navigate to `http://localhost:5173`
+### Row 2: Menu Cards + Testimonials
+![Menu Cards](./docs/screen-menu.png) (TODO)
+![Testimonials](./docs/screen-testimonials.png) (TODO)
 
-### Build Commands
+## Getting Started
 
 ```bash
-# Development server
+npm i
 npm run dev
-
-# Production build
-npm run build
-
-# Preview production build
-npm run preview
+npm run build && npm run preview
 ```
 
-## 🏗️ Project Structure
+## Scripts
+
+| Script | Description | Command |
+|--------|-------------|---------|
+| `dev` | Start development server | `npm run dev` |
+| `build` | Build for production | `npm run build` |
+| `preview` | Preview production build | `npm run preview` |
+| `deploy` | Deploy to GitHub Pages | `npm run deploy` |
+| `predeploy` | Build before deployment | `npm run predeploy` |
+
+## Project Structure
 
 ```
-foodfun/
-├── public/
-│   ├── assets/           # Images and static assets
-│   │   ├── hero.jpg      # Hero section image
-│   │   ├── salad.png     # About section image
-│   │   ├── plate1.jpg    # Menu item images
-│   │   ├── plate2.jpg
-│   │   ├── plate3.jpg
-│   │   ├── plate4.jpg
-│   │   ├── plate5.jpg
-│   │   ├── plate6.jpg
-│   │   ├── avatar1.jpg   # Testimonial avatars
-│   │   ├── avatar2.jpg
-│   │   ├── avatar3.jpg
-│   │   └── favicon.png   # Site favicon
-│   └── manifest.json     # PWA manifest
-├── src/
-│   ├── components/       # JavaScript components
-│   │   ├── NavBar.js     # Navigation component
-│   │   ├── Hero.js       # Hero section
-│   │   ├── About.js      # About section
-│   │   ├── WhyUs.js      # Features section
-│   │   ├── MenuCarousel.js # Menu display
-│   │   ├── Testimonials.js # Customer reviews
-│   │   ├── Newsletter.js # Email subscription
-│   │   ├── Footer.js     # Site footer
-│   │   ├── ThemeToggle.js # Theme switcher
-│   │   └── Toast.js      # Notification system
-│   ├── data/             # JSON data files
-│   │   ├── menu.json     # Menu items data
-│   │   └── testimonials.json # Customer testimonials
-│   ├── styles/           # CSS stylesheets
-│   │   ├── global.css    # Global styles and tokens
-│   │   ├── components.css # Component-specific styles
-│   │   └── utilities.css # Utility classes
-│   ├── utils.js          # Utility functions
-│   └── main.js           # Main application entry
-├── index.html            # Main HTML file
-├── package.json          # Project dependencies
-└── README.md            # This file
+/src/
+├── components/
+│   ├── About.js
+│   ├── FloatingIngredients.js
+│   ├── Footer.js
+│   ├── Hero.js
+│   ├── MenuCarousel.js
+│   ├── NavBar.js
+│   ├── Newsletter.js
+│   ├── Testimonials.js
+│   ├── ThemeToggle.js
+│   └── Toast.js
+├── styles/
+│   ├── global.css
+│   ├── components.css
+│   ├── utilities.css
+│   └── mobile.css
+├── data/
+│   ├── menu.json
+│   └── testimonials.json
+├── assets/
+│   ├── plate-*.svg (12 dish plates)
+│   ├── ing-*.svg (4 ingredients)
+│   ├── avatar-*.svg (4 avatars)
+│   ├── ic-*.svg (3 icons)
+│   ├── hero.svg, favicon.svg
+│   └── + more
+├── utils/
+│   └── assetsMap.js (assetUrl/assetsMap, prefersReducedMotion, storage helpers)
+├── main.js
+├── counter.js
+└── javascript.svg
+├── vite.config.js
+├── index.html
+└── README.md
 ```
 
-## 🎨 Design System
+## Design Tokens
 
-### Color Tokens
+### Colors
+- **Light:** `--brand: #F7B500`, `--brand-2: #FFE08A`, `--text: #1B1B1B`, `--muted: #6A6A6A`, `--bg: #FFFFFF`, `--bg-2: #FAFAFA`, `--radius: 18px`
+- **Dark:** `--bg: #0D0F14`, `--bg-2: #12151B`, `--text: #EDEFF3`, `--muted: #A9B2C3`, `--brand: #F7B500`, `--brand-2: #3A3000`
 
-```css
-/* Light Theme */
---brand: #F7B500      /* Primary brand color */
---brand-2: #FFE08A    /* Secondary brand color */
---text: #1B1B1B       /* Primary text */
---muted: #6A6A6A      /* Secondary text */
---bg: #FFFFFF         /* Background */
---bg-2: #FAFAFA      /* Secondary background */
---radius: 18px        /* Border radius */
+### Typography
+- **Display:** `clamp(28px, 3vw, 48px)/1.15 800`
+- **H2:** `clamp(20px, 2.2vw, 32px)/1.2 700`
+- **Body:** `16px/1.65`
 
-/* Dark Theme */
---bg: #0D0F14        /* Dark background */
---bg-2: #12151B      /* Dark secondary background */
---text: #EDEFF3      /* Light text */
---muted: #A9B2C3     /* Light muted text */
-```
+## Accessibility Notes
 
-### Typography Scale
+- Keyboard-only nav tested, focus-visible rings, alt attributes
+- Motion-safe: prefers-reduced-motion respected (hero floats, reveals)
+- Tap targets: 44×44px hamburger, CTA buttons
 
-```css
-.display    /* clamp(28px, 3vw, 48px) - Hero headlines */
-.h1         /* clamp(28px, 3vw, 48px) - Main headings */
-.h2         /* clamp(20px, 2.2vw, 32px) - Section headings */
-.h3         /* clamp(18px, 1.8vw, 24px) - Subsection headings */
-.body       /* 16px - Body text */
-.lead       /* clamp(18px, 1.5vw, 20px) - Lead paragraphs */
-.small      /* 14px - Small text */
-```
+## Performance Notes
 
-### Spacing Scale
+- Images pre-sized (aspect-ratio), lazy for non-hero
+- Modules tree-shaken, `<script type="module">`
+- Target Lighthouse ≥ 90/90/90/90 — leave placeholders for scores and update later
 
-```css
---space-xs: 0.5rem   /* 8px */
---space-sm: 1rem     /* 16px */
---space-md: 1.5rem   /* 24px */
---space-lg: 2rem     /* 32px */
---space-xl: 3rem     /* 48px */
---space-2xl: 4rem    /* 64px */
---space-3xl: 6rem    /* 96px */
-```
+## Deployment (GitHub Pages)
 
-## 🔧 Component Architecture
+- Base path set to `/foodfun/` in vite.config.js
+- Build → `dist/`
+- **Options:**
+  - **gh-pages script:** `gh-pages -d dist`
+  - **or Pages Action** (summarize)
+- **Note:** use incognito / hard refresh if CDN cache persists
 
-### Component Lifecycle
+## Changelog — What we fixed (detailed)
 
-Each component follows a consistent pattern:
+### 2025-08-18 — Assets & Paths Overhaul
+- Moved images from `/public/assets` → `/src/assets`
+- Introduced base-aware resolver with `import.meta.glob` (assetsMap.js) to bundle and hash all images → consistent URLs on localhost & GitHub Pages (incl. Safari)
+- Replaced all string paths and `new URL(...)` with `getAsset('file.svg')`
+- Updated JSON (menu.json, testimonials.json) to store only filenames; components resolve via `getAsset`
 
-```javascript
-export class ComponentName {
-  constructor() {
-    this.init();
-  }
+### 2025-08-18 — GitHub Pages Fix
+- `vite.config.js` → `base: '/foodfun/'`
+- Removed absolute `/assets/...` usage in HTML/CSS/JS
+- Guarded Service Worker to PROD only (`import.meta.env.PROD`)
 
-  init() {
-    this.createComponent();
-    this.bindEvents();
-  }
+### 2025-08-18 — Responsive & UI
+- Mobile 320–414: single-column, safe paddings, hero stack
+- Menu card media box with fixed aspect-ratio and `object-fit: contain`
+- Theme FAB safe-area insets for iOS
 
-  createComponent() {
-    // DOM creation logic
-  }
+### 2025-08-18 — A11y & Micro-interactions
+- IntersectionObserver reveals gated by reduced motion
+- Inline SVG for floating ingredients with graceful fallback
 
-  bindEvents() {
-    // Event listeners
-  }
-}
-```
+### 2025-08-18 — Content
+- Replaced placeholders with consistent SVG dishes, avatars, icons
 
-### Key Components
+## Troubleshooting
 
-- **NavBar**: Sticky navigation with mobile hamburger menu
-- **Hero**: Main landing section with CTAs and floating elements
-- **About**: Company story with parallax image effect
-- **WhyUs**: Feature cards with hover animations
-- **MenuCarousel**: Responsive menu display with cart functionality
-- **Testimonials**: Accessible carousel with auto-advance
-- **Newsletter**: Email subscription with validation
-- **Footer**: Multi-column footer with social links
-- **ThemeToggle**: Theme switcher with system preference detection
-- **Toast**: Non-blocking notification system
+### Images visible locally but missing on live:
+- Ensure all assets are under `/src/assets` and referenced via `getAsset()`
+- Check `base: '/foodfun/'`
+- Clear cache: `rm -rf dist node_modules/.vite` → rebuild
+- Hard refresh or open in private window (CDN cache)
 
-## 📱 Responsive Breakpoints
+### Blank Menu/Testimonial:
+- Ensure JSON imports (no fetch), filenames match assets
+- Watch console for `[assets] missing asset:` warnings
 
-```css
-/* Mobile First Approach */
-360px   /* Small mobile */
-414px   /* Large mobile */
-768px   /* Tablet */
-1024px  /* Small desktop */
-1280px  /* Desktop */
-1440px  /* Large desktop */
-```
+## License
 
-## ♿ Accessibility Features
-
-- **Semantic HTML** - Proper landmark elements and ARIA roles
-- **Keyboard Navigation** - Full keyboard support for all interactive elements
-- **Screen Reader Support** - ARIA labels and live regions
-- **Focus Management** - Visible focus indicators and logical tab order
-- **Reduced Motion** - Respects `prefers-reduced-motion` user preference
-- **Color Contrast** - WCAG AA compliant color combinations
-- **Touch Targets** - Minimum 44x44px for mobile interactions
-
-## 🚀 Performance Features
-
-- **Lazy Loading** - Images load only when needed
-- **Intersection Observer** - Efficient scroll animations
-- **Debounced Events** - Optimized scroll and resize handlers
-- **CSS Transitions** - Hardware-accelerated animations
-- **Minimal JavaScript** - Lightweight, tree-shaken code
-- **Optimized Assets** - Compressed images and efficient formats
-
-## 🛠️ Browser Support
-
-- **Modern Browsers**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-- **Mobile**: iOS Safari 14+, Chrome Mobile 90+
-- **Features**: ES2020, CSS Grid, Flexbox, Intersection Observer
-
-## 📊 Lighthouse Scores
-
-Target scores for production build:
-
-- **Performance**: 90+
-- **Accessibility**: 95+
-- **Best Practices**: 90+
-- **SEO**: 95+
-
-## 🔒 Local Storage Keys
-
-The application uses localStorage for persistence:
-
-```javascript
-'ff-theme'      // User's theme preference
-'ff-cart'       // Shopping cart items
-'ff-subscribed' // Newsletter subscription status
-```
-
-## 🧪 Testing
-
-### Manual Testing Checklist
-
-- [ ] Theme toggle works and persists
-- [ ] Mobile hamburger menu functions correctly
-- [ ] Menu carousel scrolls on mobile
-- [ ] Testimonials auto-advance and pause on hover
-- [ ] Newsletter subscription works
-- [ ] All links scroll smoothly to sections
-- [ ] Responsive design works on all breakpoints
-- [ ] Keyboard navigation is functional
-- [ ] Screen reader compatibility
-
-### Cross-browser Testing
-
-- [ ] Chrome (latest)
-- [ ] Firefox (latest)
-- [ ] Safari (latest)
-- [ ] Edge (latest)
-- [ ] Mobile Chrome
-- [ ] Mobile Safari
-
-## 🚀 Deployment
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Deploy Options
-
-- **Netlify**: Drag and drop `dist` folder
-- **Vercel**: Connect repository for auto-deployment
-- **GitHub Pages**: Deploy from `dist` branch
-- **Traditional Hosting**: Upload `dist` contents to web server
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Vite** for the fast build tool
-- **CSS Custom Properties** for theming
-- **Intersection Observer API** for scroll animations
-- **Modern CSS Grid & Flexbox** for layouts
-- **Vanilla JavaScript** for lightweight implementation
-
-## 📞 Support
-
-For support and questions:
-
-- 📧 Email: hello@foodfun.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/foodfun/issues)
-- 📖 Documentation: [Project Wiki](https://github.com/yourusername/foodfun/wiki)
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ by the FoodFun Team**
-
-*Delivering exceptional dining experiences since 2018*
+**Built with ❤️ using Vite + Vanilla JS**
