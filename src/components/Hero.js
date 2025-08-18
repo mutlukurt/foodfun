@@ -102,8 +102,10 @@ export class Hero {
     // Hero image
     const heroImage = document.createElement('img');
     heroImage.src = '/assets/hero.svg';
-    heroImage.alt = 'Delicious food presentation';
+    heroImage.alt = 'Decorative noodles bowl illustration in hero circle';
     heroImage.className = 'hero-image';
+    heroImage.width = 400;
+    heroImage.height = 400;
     
     // Organic shapes
     const shapesContainer = document.createElement('div');
@@ -123,9 +125,10 @@ export class Hero {
     ingredientsContainer.className = 'hero-ingredients';
     
     const ingredients = [
-      { src: '/assets/salad.svg', alt: 'Fresh salad ingredients' },
-      { src: '/assets/plate1.svg', alt: 'Fresh vegetables' },
-      { src: '/assets/plate2.svg', alt: 'Herbs and spices' }
+      { src: '/assets/ing-avocado.svg', alt: 'Fresh avocado slice illustration' },
+      { src: '/assets/ing-tomato.svg', alt: 'Ripe tomato illustration' },
+      { src: '/assets/ing-lemon.svg', alt: 'Fresh lemon slice illustration' },
+      { src: '/assets/ing-herb.svg', alt: 'Herb leaf illustration' }
     ];
     
     ingredients.forEach((ingredient, index) => {
@@ -138,6 +141,7 @@ export class Hero {
       if (prefersReducedMotion()) {
         img.style.animation = 'none';
       }
+      img.loading = 'lazy';
       
       ingredientsContainer.appendChild(img);
     });

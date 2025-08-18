@@ -119,9 +119,11 @@ export class Testimonials {
     
     const avatar = document.createElement('img');
     avatar.src = testimonial.avatar;
-    avatar.alt = `${testimonial.name}'s profile picture`;
+    avatar.alt = `${testimonial.name}, ${testimonial.role} from ${testimonial.location} - customer testimonial avatar`;
     avatar.className = 'testimonial-avatar';
     avatar.loading = 'lazy';
+    avatar.width = 60;
+    avatar.height = 60;
     
     const name = document.createElement('div');
     name.className = 'testimonial-name';

@@ -36,8 +36,8 @@ export class About {
     rightSide.className = 'about-image';
     
     const image = document.createElement('img');
-    image.src = '/assets/salad.svg';
-    image.alt = 'Fresh salad ingredients showcasing our commitment to quality';
+    image.src = '/assets/plate-mediterranean-salad.svg';
+    image.alt = 'Fresh Mediterranean salad illustration with greens and veggies';
     image.loading = 'lazy';
     
     rightSide.appendChild(image);

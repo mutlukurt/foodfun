@@ -87,12 +87,14 @@ export class MenuCarousel {
     
     // Image
     const imageContainer = document.createElement('div');
-    imageContainer.className = 'menu-card-image-container';
+    imageContainer.className = 'menu-card-image-container card-media';
     
     const image = document.createElement('img');
     image.src = item.image;
-    image.alt = item.title;
+    image.alt = `Delicious ${item.title.toLowerCase()} - a mouthwatering dish that showcases our culinary expertise`;
     image.className = 'menu-card-image';
+    image.width = 800; // logical size for aspect-ratio 4/3
+    image.height = 600;
     image.loading = 'lazy';
     
     imageContainer.appendChild(image);
