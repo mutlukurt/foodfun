@@ -3,21 +3,21 @@
     "name": "Sarah Johnson",
     "role": "Food Blogger",
     "text": "FoodFun has completely changed my dining experience! The fresh ingredients and creative menu options are absolutely amazing. I love how they prioritize quality and taste in every dish.",
-    "avatar": "/assets/avatar-salah.svg",
+    "avatar": "assets/avatar-salah.svg",
     "location": "New York, NY"
   },
   {
     "name": "Michael Chen",
     "role": "Regular Customer",
     "text": "I've been coming to FoodFun for over a year now, and the consistency is incredible. Their service is fast, the food is always fresh, and the prices are reasonable. Highly recommend!",
-    "avatar": "/assets/avatar-mina.svg",
+    "avatar": "assets/avatar-mina.svg",
     "location": "Los Angeles, CA"
   },
   {
     "name": "Emily Rodriguez",
     "role": "Health Enthusiast",
     "text": "As someone who's very conscious about what I eat, FoodFun's healthy options are perfect. The smoothie bowls and salads are not only nutritious but also delicious. It's my go-to spot!",
-    "avatar": "/assets/avatar-ethan.svg",
+    "avatar": "assets/avatar-ethan.svg",
     "location": "Miami, FL"
   }
 ]

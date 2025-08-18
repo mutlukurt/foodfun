@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/foodfun/',
+  base: '/foodfun/',   // For GitHub Pages project site
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

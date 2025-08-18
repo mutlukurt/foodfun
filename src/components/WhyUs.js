@@ -22,17 +22,17 @@ export class WhyUs {
     
     const features = [
       {
-        icon: this.createIconImg('/assets/ic-fresh.svg', 'Freshness star icon'),
+        icon: this.createIconImg('assets/ic-fresh.svg', 'Freshness star icon'),
         title: 'Fresh Food',
         description: 'We use only the freshest, locally-sourced ingredients to ensure every dish is bursting with flavor and nutrition.'
       },
       {
-        icon: this.createIconImg('/assets/ic-offer.svg', 'Special offer badge icon'),
+        icon: this.createIconImg('assets/ic-offer.svg', 'Special offer badge icon'),
         title: 'Best Offer',
         description: 'Enjoy competitive prices and special deals on our signature dishes, making quality dining accessible to everyone.'
       },
       {
-        icon: this.createIconImg('/assets/ic-delivery.svg', 'Fast delivery truck icon'),
+        icon: this.createIconImg('assets/ic-delivery.svg', 'Fast delivery truck icon'),
         title: 'Fast Delivery',
         description: 'Get your favorite meals delivered to your doorstep in under 30 minutes, hot and ready to enjoy.'
       }

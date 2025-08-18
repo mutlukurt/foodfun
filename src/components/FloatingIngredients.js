@@ -23,7 +23,7 @@ export class FloatingIngredients {
   async createIngredientSVG(ingredient) {
     try {
       // Try to fetch the SVG file
-      const response = await fetch(`/assets/ing-${ingredient.name}.svg`);
+      const response = await fetch(`assets/ing-${ingredient.name}.svg`);
       if (response.ok) {
         const svgText = await response.text();
         const parser = new DOMParser();

@@ -120,19 +120,18 @@ window.addEventListener('load', () => {
   }
 });
 
-// Handle service worker registration for PWA features (disabled in development)
-// if ('serviceWorker' in navigator && import.meta.env.PROD) {
-//   window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/sw.js')
-//       .then(registration => {
-//         console.log('SW registered: ', registration);
-//       })
-//       .catch(registrationError => {
-//         console.log('SW registration failed: ', registrationError);
-//         console.log('SW registration failed: ', registrationError);
-//       });
-//   });
-// }
+// Handle service worker registration for PWA features (production only)
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/foodfun/sw.js')
+      .then(registration => {
+        console.log('SW registered: ', registration);
+      })
+      .catch(registrationError => {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
 
 // Export for potential external use
 window.FoodFun = {

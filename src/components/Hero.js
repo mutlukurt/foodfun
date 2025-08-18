@@ -102,7 +102,7 @@ export class Hero {
     
     // Hero image
     const heroImage = document.createElement('img');
-    heroImage.src = '/assets/hero.svg';
+    heroImage.src = 'assets/hero.svg';
     heroImage.alt = 'Decorative noodles bowl illustration in hero circle';
     heroImage.className = 'hero-image';
     heroImage.width = 400;
