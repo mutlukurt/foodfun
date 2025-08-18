@@ -1,4 +1,5 @@
 import { prefersReducedMotion } from '../utils.js';
+import testimonials from '../data/testimonials.json';
 
 export class Testimonials {
   constructor() {
@@ -9,16 +10,20 @@ export class Testimonials {
   }
 
   async init() {
-    await this.loadTestimonials();
+    this.loadTestimonials();
     this.createTestimonials();
     this.bindEvents();
     this.startAutoAdvance();
   }
 
-  async loadTestimonials() {
+  loadTestimonials() {
     try {
-      const response = await fetch('src/data/testimonials.json');
-      this.testimonials = await response.json();
+      // Use imported JSON data directly
+      this.testimonials = testimonials || [];
+      
+      if (this.testimonials.length === 0) {
+        console.warn('Testimonials data is empty or undefined');
+      }
     } catch (error) {
       console.error('Error loading testimonials:', error);
       this.testimonials = [];
@@ -41,62 +46,73 @@ export class Testimonials {
     slider.setAttribute('aria-roledescription', 'carousel');
     slider.setAttribute('aria-live', 'polite');
     
-    // Track for testimonials
-    const track = document.createElement('div');
-    track.className = 'testimonials-track';
-    
-    this.testimonials.forEach((testimonial, index) => {
-      const testimonialElement = this.createTestimonial(testimonial, index);
-      track.appendChild(testimonialElement);
-    });
-    
-    slider.appendChild(track);
-    
-    // Controls
-    const controls = document.createElement('div');
-    controls.className = 'testimonials-controls';
-    
-    // Previous button
-    const prevBtn = document.createElement('button');
-    prevBtn.className = 'testimonials-btn';
-    prevBtn.setAttribute('aria-label', 'Previous testimonial');
-    prevBtn.innerHTML = '←';
-    
-    // Next button
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'testimonials-btn';
-    nextBtn.setAttribute('aria-label', 'Next testimonial');
-    nextBtn.innerHTML = '→';
-    
-    // Dots navigation
-    const dotsContainer = document.createElement('div');
-    dotsContainer.className = 'testimonials-dots';
-    dotsContainer.setAttribute('role', 'tablist');
-    dotsContainer.setAttribute('aria-label', 'Testimonial navigation');
-    
-    this.testimonials.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.className = 'testimonials-dot';
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-      dot.setAttribute('aria-label', `Go to testimonial ${index + 1}`);
+    // Check if we have testimonials data
+    if (!this.testimonials || this.testimonials.length === 0) {
+      const emptyState = document.createElement('div');
+      emptyState.className = 'testimonials-empty-state';
+      emptyState.innerHTML = `
+        <p>Customer reviews are loading...</p>
+        <p>Please refresh the page if this persists.</p>
+      `;
+      slider.appendChild(emptyState);
+    } else {
+      // Track for testimonials
+      const track = document.createElement('div');
+      track.className = 'testimonials-track';
       
-      if (index === 0) {
-        dot.classList.add('active');
-      }
-      
-      dot.addEventListener('click', () => {
-        this.goToTestimonial(index);
+      this.testimonials.forEach((testimonial, index) => {
+        const testimonialElement = this.createTestimonial(testimonial, index);
+        track.appendChild(testimonialElement);
       });
       
-      dotsContainer.appendChild(dot);
-    });
-    
-    controls.appendChild(prevBtn);
-    controls.appendChild(dotsContainer);
-    controls.appendChild(nextBtn);
-    
-    slider.appendChild(controls);
+      slider.appendChild(track);
+      
+      // Controls
+      const controls = document.createElement('div');
+      controls.className = 'testimonials-controls';
+      
+      // Previous button
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'testimonials-btn';
+      prevBtn.setAttribute('aria-label', 'Previous testimonial');
+      prevBtn.innerHTML = '←';
+      
+      // Next button
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'testimonials-btn';
+      nextBtn.setAttribute('aria-label', 'Next testimonial');
+      nextBtn.innerHTML = '→';
+      
+      // Dots navigation
+      const dotsContainer = document.createElement('div');
+      dotsContainer.className = 'testimonials-dots';
+      dotsContainer.setAttribute('role', 'tablist');
+      dotsContainer.setAttribute('aria-label', 'Testimonial navigation');
+      
+      this.testimonials.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'testimonials-dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+        dot.setAttribute('aria-label', `Go to testimonial ${index + 1}`);
+        
+        if (index === 0) {
+          dot.classList.add('active');
+        }
+        
+        dot.addEventListener('click', () => {
+          this.goToTestimonial(index);
+        });
+        
+        dotsContainer.appendChild(dot);
+      });
+      
+      controls.appendChild(prevBtn);
+      controls.appendChild(dotsContainer);
+      controls.appendChild(nextBtn);
+      
+      slider.appendChild(controls);
+    }
     
     testimonialsContent.appendChild(heading);
     testimonialsContent.appendChild(slider);
@@ -118,12 +134,28 @@ export class Testimonials {
     author.className = 'testimonial-author';
     
     const avatar = document.createElement('img');
-    avatar.src = testimonial.avatar;
+    
+    // Create base-aware avatar URL
+    try {
+      const avatarUrl = new URL(`../${testimonial.avatar}`, import.meta.url).href;
+      avatar.src = avatarUrl;
+    } catch (error) {
+      console.warn(`Failed to resolve avatar URL for ${testimonial.name}:`, error);
+      // Fallback to relative path
+      avatar.src = testimonial.avatar;
+    }
+    
     avatar.alt = `${testimonial.name}, ${testimonial.role} from ${testimonial.location} - customer testimonial avatar`;
     avatar.className = 'testimonial-avatar';
     avatar.loading = 'lazy';
     avatar.width = 60;
     avatar.height = 60;
+    
+    // Add error handling for avatar images
+    avatar.onerror = () => {
+      console.warn(`Failed to load avatar for ${testimonial.name}: ${testimonial.avatar}`);
+      // Could add a fallback avatar here
+    };
     
     const name = document.createElement('div');
     name.className = 'testimonial-name';
