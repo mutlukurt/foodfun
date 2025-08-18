@@ -46,7 +46,7 @@ export class FloatingIngredients {
   }
 
   setSVGAttributes(svg, ingredient) {
-    svg.className = 'fi';
+    svg.setAttribute('class', 'fi');
     svg.setAttribute('data-name', ingredient.name);
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', ingredient.label);

@@ -108,9 +108,18 @@
 
 /* Mobile Menu */
 @media (max-width: 1023px) {
+  .navbar-container {
+    min-height: 70px;
+    padding: var(--space-xs) var(--space-sm);
+  }
+  
+  .navbar-brand {
+    font-size: 20px;
+  }
+  
   .navbar-menu {
     position: fixed;
-    top: 80px;
+    top: 70px;
     left: 0;
     right: 0;
     background: var(--bg);
@@ -122,6 +131,8 @@
     visibility: hidden;
     transition: all var(--transition-normal);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100vw;
+    z-index: 999;
   }
 
   [data-theme="dark"] .navbar-menu {
@@ -137,6 +148,14 @@
 
   .navbar-toggle {
     display: flex;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+  }
+  
+  /* Body scroll lock when menu is open */
+  body.menu-open {
+    overflow: hidden;
   }
 }
 
@@ -146,6 +165,7 @@
   background: linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
   overflow: hidden;
   position: relative;
+  max-width: 100%;
 }
 
 .hero-container {
@@ -154,6 +174,7 @@
   gap: var(--space-2xl);
   align-items: center;
   min-height: 80vh;
+  position: relative;
 }
 
 .hero-content h1 {
@@ -393,6 +414,8 @@
 .menu-section {
   padding: var(--space-3xl) 0;
   background: var(--bg);
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .menu-container h2 {
@@ -417,6 +440,8 @@
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-normal);
+  width: 100%;
+  max-width: 100%;
 }
 
 .menu-card:hover {
@@ -432,12 +457,14 @@
 .card-media {
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  border-radius: var(--radius);
 }
 
 .menu-card-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
 
 .menu-card-content {
@@ -498,6 +525,7 @@
     scroll-snap-type: x mandatory;
     gap: var(--space-md);
     padding: var(--space-sm) 0;
+    scroll-padding-inline: 16px;
   }
 
   .menu-card {
@@ -833,6 +861,36 @@
   height: 24px;
 }
 
+/* Mobile theme toggle positioning */
+@media (max-width: 767px) {
+  .theme-toggle {
+    bottom: max(16px, env(safe-area-inset-bottom));
+    right: max(16px, env(safe-area-inset-right));
+    width: clamp(40px, 12vw, 48px);
+    height: clamp(40px, 12vw, 48px);
+    z-index: 1001;
+  }
+  
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    width: 44px;
+    height: 44px;
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 /* ===== TOAST SYSTEM ===== */
 .toast-container {
   position: fixed;
@@ -931,5 +989,527 @@
   .footer-container {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+}
+
+/* ===== COMPREHENSIVE MOBILE RESPONSIVE STYLES ===== */
+
+/* Tablet Styles (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    padding: 0 var(--space-lg);
+  }
+  
+  .hero-container {
+    gap: var(--space-xl);
+  }
+  
+  .hero-image {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .about-container {
+    gap: var(--space-xl);
+  }
+  
+  .why-us-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile Styles (up to 767px) */
+@media (max-width: 767px) {
+  /* General Mobile Adjustments */
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  .container-wide {
+    padding: 0 var(--space-sm);
+  }
+  
+  /* Typography Adjustments for Mobile */
+  .display, h1, .h1 {
+    font-size: clamp(22px, 6vw, 32px);
+    line-height: 1.2;
+  }
+  
+  h2, .h2 {
+    font-size: clamp(18px, 5vw, 26px);
+  }
+  
+  h3, .h3 {
+    font-size: clamp(18px, 4.5vw, 20px);
+  }
+  
+  .lead {
+    font-size: clamp(16px, 4vw, 18px);
+  }
+  
+  /* Spacing Adjustments for Mobile */
+  .hero-section {
+    padding: var(--space-2xl) 0;
+    min-height: 60vh;
+  }
+  
+  .about-section,
+  .why-us-section,
+  .menu-section,
+  .testimonials-section,
+  .newsletter-section {
+    padding: var(--space-2xl) 0;
+  }
+  
+  /* Hero Section Mobile */
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-lg);
+    min-height: 60vh;
+  }
+  
+  .hero-content {
+    order: 2;
+  }
+  
+  .hero-visual {
+    order: 1;
+  }
+  
+  .hero-image {
+    width: min(80vw, 320px);
+    height: min(80vw, 320px);
+    margin-inline: auto;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .hero-features {
+    align-items: center;
+  }
+  
+  /* About Section Mobile */
+  .about-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-lg);
+  }
+  
+  .about-content {
+    order: 2;
+  }
+  
+  .about-image {
+    order: 1;
+  }
+  
+  /* Why Us Section Mobile */
+  .why-us-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .why-us-card {
+    padding: var(--space-lg);
+  }
+  
+  /* Menu Section Mobile */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    overflow-x: visible;
+  }
+  
+  .menu-card {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .menu-carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+  
+  .menu-carousel-btn {
+    background: var(--brand);
+    color: var(--text);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+  
+  .menu-carousel-btn:hover {
+    background: var(--brand-2);
+    transform: scale(1.1);
+  }
+  
+  .menu-carousel-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Testimonials Mobile */
+  .testimonials-slider {
+    max-width: 100%;
+  }
+  
+  .testimonial {
+    padding: var(--space-md);
+  }
+  
+  .testimonial-text {
+    font-size: 16px;
+  }
+  
+  /* Newsletter Mobile */
+  .newsletter-form {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .newsletter-input,
+  .newsletter-btn {
+    width: 100%;
+  }
+  
+  /* Footer Mobile */
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-lg);
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  /* Theme Toggle Mobile */
+  .theme-toggle {
+    bottom: max(16px, env(safe-area-inset-bottom));
+    right: max(16px, env(safe-area-inset-right));
+    width: clamp(40px, 12vw, 48px);
+    height: clamp(40px, 12vw, 48px);
+  }
+  
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Floating Ingredients Mobile */
+  .fi {
+    width: clamp(24px, 6vw, 40px);
+  }
+  
+  .fi[data-name="avocado"] {
+    top: 10%;
+    right: 15%;
+  }
+  
+  .fi[data-name="tomato"] {
+    top: 18%;
+    right: 8%;
+  }
+  
+  .fi[data-name="lemon"] {
+    top: 45%;
+    left: 10%;
+  }
+  
+  .fi[data-name="herb"] {
+    top: 25%;
+    right: 25%;
+  }
+  
+  /* Hide decorative shapes on very small screens */
+  .hero-shape:nth-child(1) {
+    display: none;
+  }
+  
+  .hero-shape:nth-child(2) {
+    display: none;
+  }
+}
+
+/* Small Mobile Styles (up to 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-xs);
+  }
+  
+  .hero-section {
+    padding: var(--space-xl) 0;
+  }
+  
+  .hero-image {
+    width: min(75vw, 280px);
+    height: min(75vw, 280px);
+  }
+  
+  .hero-buttons .btn {
+    max-width: 240px;
+    padding: clamp(10px, 2.6vw, 14px) clamp(14px, 4vw, 18px);
+  }
+  
+  .about-section,
+  .why-us-section,
+  .menu-section,
+  .testimonials-section,
+  .newsletter-section {
+    padding: var(--space-xl) 0;
+  }
+  
+  .why-us-card {
+    padding: var(--space-md);
+  }
+  
+  .menu-card {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .newsletter-container {
+    padding: 0 var(--space-sm);
+  }
+  
+  .footer {
+    padding: var(--space-xl) 0 var(--space-md);
+  }
+  
+  .footer-container {
+    gap: var(--space-md);
+  }
+  
+  /* Ensure cards use full width with safe padding */
+  .card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  /* Button improvements for small screens */
+  .btn {
+    padding: clamp(10px, 2.6vw, 14px) clamp(14px, 4vw, 18px);
+    font-size: clamp(14px, 3.5vw, 16px);
+  }
+}
+
+/* Extra Small Mobile Styles (up to 360px) */
+@media (max-width: 360px) {
+  .hero-image {
+    width: min(70vw, 240px);
+    height: min(70vw, 240px);
+  }
+  
+  .hero-buttons .btn {
+    max-width: 200px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .menu-card {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .why-us-card {
+    padding: var(--space-sm);
+  }
+  
+  .testimonial {
+    padding: var(--space-sm);
+  }
+  
+  .testimonial-text {
+    font-size: 15px;
+  }
+  
+  /* Ensure no horizontal scroll on very small screens */
+  .container {
+    padding: 0 12px;
+  }
+  
+  .hero-buttons {
+    gap: var(--space-xs);
+  }
+}
+
+/* Ultra Small Mobile Styles (320px) */
+@media (max-width: 320px) {
+  .container {
+    padding: 0 8px;
+  }
+  
+  .hero-image {
+    width: min(65vw, 200px);
+    height: min(65vw, 200px);
+  }
+  
+  .hero-buttons .btn {
+    max-width: 180px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .menu-card {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .why-us-card {
+    padding: var(--space-xs);
+  }
+  
+  .testimonial {
+    padding: var(--space-xs);
+  }
+  
+  .testimonial-text {
+    font-size: 14px;
+  }
+  
+  /* Ensure all sections fit within viewport */
+  .section,
+  .hero,
+  .menu {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Landscape Mobile Styles */
+@media (max-width: 767px) and (orientation: landscape) {
+  .hero-section {
+    padding: var(--space-lg) 0;
+    min-height: 50vh;
+  }
+  
+  .hero-container {
+    min-height: 50vh;
+    gap: var(--space-md);
+  }
+  
+  .hero-image {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .about-section,
+  .why-us-section,
+  .menu-section,
+  .testimonials-section,
+  .newsletter-section {
+    padding: var(--space-lg) 0;
+  }
+}
+
+/* High DPI Mobile Devices */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-image,
+  .about-image img,
+  .menu-card-image,
+  .testimonial-avatar {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover,
+  .card:hover,
+  .menu-card:hover,
+  .why-us-card:hover {
+    transform: none;
+  }
+  
+  .btn:active,
+  .card:active,
+  .menu-card:active,
+  .why-us-card:active {
+    transform: scale(0.98);
+  }
+  
+  .theme-toggle:hover {
+    transform: none;
+  }
+  
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Accessibility Improvements for Mobile */
+@media (max-width: 767px) {
+  /* Ensure minimum touch target sizes */
+  .btn,
+  .navbar-link,
+  .menu-carousel-btn,
+  .testimonials-btn,
+  .theme-toggle {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve focus visibility on mobile */
+  .btn:focus-visible,
+  .navbar-link:focus-visible,
+  .menu-carousel-btn:focus-visible,
+  .testimonials-btn:focus-visible,
+  .theme-toggle:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 2px;
+  }
+  
+  /* Better contrast for mobile */
+  .text-muted {
+    color: var(--text);
+    opacity: 0.8;
+  }
+}
+
+/* Print Styles for Mobile */
+@media print and (max-width: 767px) {
+  .hero-section,
+  .about-section,
+  .why-us-section,
+  .menu-section,
+  .testimonials-section,
+  .newsletter-section {
+    padding: var(--space-sm) 0;
+    page-break-inside: avoid;
+  }
+  
+  .hero-image,
+  .about-image img {
+    max-width: 200px;
+    height: auto;
   }
 }

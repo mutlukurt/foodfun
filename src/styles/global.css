@@ -116,17 +116,21 @@ p, .body {
 
 /* ===== UTILITY CLASSES ===== */
 .container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-md);
+  width: min(100%, 1200px);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 24px);
 }
 
 .container-wide {
+  width: min(100%, 1400px);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 24px);
+}
+
+/* Ensure no horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 var(--space-md);
 }
 
 /* Grid & Flexbox Helpers */
@@ -371,6 +375,62 @@ p, .body {
 @media (min-width: 769px) {
   .hidden-desktop {
     display: none !important;
+  }
+}
+
+/* Mobile-First Responsive Utilities */
+.hidden-xs { display: none !important; }
+.hidden-sm { display: none !important; }
+.hidden-md { display: none !important; }
+.hidden-lg { display: none !important; }
+.hidden-xl { display: none !important; }
+
+/* Show utilities for different screen sizes */
+@media (min-width: 480px) { .hidden-xs { display: block !important; } }
+@media (min-width: 640px) { .hidden-sm { display: block !important; } }
+@media (min-width: 768px) { .hidden-md { display: block !important; } }
+@media (min-width: 1024px) { .hidden-lg { display: block !important; } }
+@media (min-width: 1280px) { .hidden-xl { display: block !important; } }
+
+/* Mobile-specific spacing utilities */
+@media (max-width: 767px) {
+  .mt-mobile-sm { margin-top: var(--space-sm); }
+  .mt-mobile-md { margin-top: var(--space-md); }
+  .mt-mobile-lg { margin-top: var(--space-lg); }
+  
+  .mb-mobile-sm { margin-bottom: var(--space-sm); }
+  .mb-mobile-md { margin-bottom: var(--space-md); }
+  .mb-mobile-lg { margin-bottom: var(--space-lg); }
+  
+  .pt-mobile-sm { padding-top: var(--space-sm); }
+  .pt-mobile-md { padding-top: var(--space-md); }
+  .pt-mobile-lg { padding-top: var(--space-lg); }
+  
+  .pb-mobile-sm { padding-bottom: var(--space-sm); }
+  .pb-mobile-md { padding-bottom: var(--space-md); }
+  .pb-mobile-lg { padding-bottom: var(--space-lg); }
+}
+
+/* Touch-friendly button sizes for mobile */
+@media (max-width: 767px) {
+  .btn {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 14px 20px;
+  }
+  
+  .btn-small {
+    min-height: 40px;
+    min-width: 40px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .btn-large {
+    min-height: 56px;
+    min-width: 56px;
+    padding: 18px 24px;
+    font-size: 18px;
   }
 }
 

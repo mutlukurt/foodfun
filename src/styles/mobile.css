@@ -1,0 +1,361 @@
+/* ===== MOBILE-SPECIFIC OPTIMIZATIONS ===== */
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .btn:active,
+  .card:active,
+  .menu-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Mobile navigation improvements */
+@media (max-width: 767px) {
+  .navbar-container {
+    padding: var(--space-xs) var(--space-sm);
+    min-height: 70px;
+  }
+  
+  .navbar-brand {
+    font-size: 20px;
+  }
+  
+  .navbar-menu {
+    top: 70px;
+    padding: var(--space-md);
+  }
+}
+
+/* Mobile form improvements */
+@media (max-width: 767px) {
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .newsletter-input {
+    height: 48px;
+  }
+}
+
+/* Mobile image optimizations */
+@media (max-width: 767px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .hero-image,
+  .about-image img {
+    object-fit: cover;
+  }
+}
+
+/* Mobile scroll improvements */
+@media (max-width: 767px) {
+  .menu-grid {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 767px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .btn,
+  .card,
+  .menu-card {
+    will-change: transform;
+  }
+}
+
+/* ===== FLOATING INGREDIENTS MOBILE FIXES ===== */
+@media (max-width: 767px) {
+  .fi-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+  }
+  
+  .fi {
+    position: absolute;
+    width: clamp(20px, 6vw, 32px);
+    height: auto;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+    animation: floaty 6s ease-in-out infinite;
+  }
+  
+  /* Ensure SVG elements are properly sized on mobile */
+  .fi svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+  
+  /* Mobile-specific positioning for floating ingredients */
+  .fi[data-name="avocado"] {
+    top: 10%;
+    right: 15%;
+  }
+  
+  .fi[data-name="tomato"] {
+    top: 18%;
+    right: 8%;
+  }
+  
+  .fi[data-name="lemon"] {
+    top: 45%;
+    left: 10%;
+  }
+  
+  .fi[data-name="herb"] {
+    top: 25%;
+    right: 25%;
+  }
+  
+  /* Reduce animation on mobile for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    .fi {
+      animation: none;
+    }
+  }
+}
+
+/* ===== MOBILE LAYOUT IMPROVEMENTS ===== */
+@media (max-width: 767px) {
+  /* Ensure proper container behavior on mobile */
+  .container {
+    overflow-x: hidden;
+  }
+  
+  /* Fix any potential horizontal scrolling issues */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Ensure images don't overflow containers */
+  img, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ===== FINAL MOBILE LAYOUT IMPROVEMENTS ===== */
+
+/* Ensure perfect mobile layout for 320-414px screens */
+@media (max-width: 414px) {
+  /* Container and spacing */
+  .container {
+    padding-inline: clamp(8px, 3vw, 16px);
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Hero section mobile optimization */
+  .hero-section {
+    padding: var(--space-lg) 0;
+    min-height: 50vh;
+  }
+  
+  .hero-container {
+    gap: var(--space-md);
+    min-height: 50vh;
+  }
+  
+  .hero-image {
+    width: min(70vw, 280px);
+    height: min(70vw, 280px);
+  }
+  
+  .hero-buttons {
+    gap: var(--space-xs);
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: min(85vw, 280px);
+    padding: clamp(10px, 2.6vw, 14px) clamp(14px, 4vw, 18px);
+  }
+  
+  /* Menu section mobile optimization */
+  .menu-section {
+    padding: var(--space-lg) 0;
+  }
+  
+  .menu-grid {
+    gap: 12px;
+  }
+  
+  .menu-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .card-media {
+    aspect-ratio: 4/3;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  
+  .menu-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  
+  /* Why us section mobile optimization */
+  .why-us-section {
+    padding: var(--space-lg) 0;
+  }
+  
+  .why-us-grid {
+    gap: 12px;
+  }
+  
+  .why-us-card {
+    padding: var(--space-md);
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Testimonials mobile optimization */
+  .testimonials-section {
+    padding: var(--space-lg) 0;
+  }
+  
+  .testimonial {
+    padding: var(--space-sm);
+  }
+  
+  /* Newsletter mobile optimization */
+  .newsletter-section {
+    padding: var(--space-lg) 0;
+  }
+  
+  .newsletter-form {
+    gap: var(--space-sm);
+  }
+  
+  .newsletter-input,
+  .newsletter-btn {
+    width: 100%;
+    height: 48px;
+  }
+  
+  /* Footer mobile optimization */
+  .footer {
+    padding: var(--space-lg) 0 var(--space-md);
+  }
+  
+  .footer-container {
+    gap: var(--space-md);
+  }
+  
+  /* Theme toggle mobile positioning */
+  .theme-toggle {
+    bottom: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    z-index: 1001;
+  }
+  
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Floating ingredients mobile optimization */
+  .fi {
+    width: clamp(20px, 5vw, 32px);
+  }
+  
+  /* Ensure no horizontal scroll */
+  .section,
+  .hero,
+  .menu,
+  .about,
+  .why-us,
+  .testimonials,
+  .newsletter {
+    max-width: 100%;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  /* Button improvements for mobile */
+  .btn {
+    min-height: 48px;
+    min-width: 48px;
+    padding: clamp(10px, 2.6vw, 14px) clamp(14px, 4vw, 18px);
+    font-size: clamp(14px, 3.5vw, 16px);
+  }
+  
+  /* Card improvements for mobile */
+  .card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: var(--space-md);
+  }
+}
+
+/* Ultra small mobile (320px) specific fixes */
+@media (max-width: 320px) {
+  .container {
+    padding-inline: 6px;
+  }
+  
+  .hero-image {
+    width: min(65vw, 200px);
+    height: min(65vw, 200px);
+  }
+  
+  .hero-buttons .btn {
+    max-width: min(80vw, 200px);
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .menu-card {
+    padding: var(--space-sm);
+  }
+  
+  .why-us-card {
+    padding: var(--space-sm);
+  }
+  
+  .testimonial {
+    padding: var(--space-xs);
+  }
+  
+  .newsletter-input,
+  .newsletter-btn {
+    height: 44px;
+    font-size: 14px;
+  }
+  
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    bottom: 12px;
+    right: 12px;
+  }
+  
+  .theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+}

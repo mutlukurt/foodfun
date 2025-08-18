@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   
   <!-- SEO Meta Tags -->
   <title>FoodFun - Order Your Favourite Food Easily</title>
@@ -28,12 +28,11 @@
   <!-- Canonical URL -->
   <link rel="canonical" href="https://foodfun.com" />
   
-  <!-- Manifest -->
-  <link rel="manifest" href="/manifest.json" />
+  <!-- Manifest (commented out until service worker is implemented) -->
+  <!-- <link rel="manifest" href="/manifest.json" /> -->
   
-  <!-- Preload critical assets -->
-  <link rel="preload" href="/src/styles/global.css" as="style" />
-  <link rel="preload" href="/src/main.js" as="script" />
+  <!-- Mobile-specific styles -->
+  <link rel="stylesheet" href="/src/styles/mobile.css" />
 </head>
 <body>
   <!-- Scroll Progress Bar -->

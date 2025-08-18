@@ -1,6 +1,7 @@
 import './styles/global.css';
 import './styles/components.css';
 import './styles/utilities.css';
+import './styles/mobile.css';
 import { updateScrollProgress, createScrollObserver } from './utils.js';
 import { NavBar } from './components/NavBar.js';
 import { Hero } from './components/Hero.js';
@@ -119,18 +120,19 @@ window.addEventListener('load', () => {
   }
 });
 
-// Handle service worker registration for PWA features
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(registration => {
-        console.log('SW registered: ', registration);
-      })
-      .catch(registrationError => {
-        console.log('SW registration failed: ', registrationError);
-      });
-  });
-}
+// Handle service worker registration for PWA features (disabled in development)
+// if ('serviceWorker' in navigator && import.meta.env.PROD) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/sw.js')
+//       .then(registration => {
+//         console.log('SW registered: ', registration);
+//       })
+//       .catch(registrationError => {
+//         console.log('SW registration failed: ', registrationError);
+//         console.log('SW registration failed: ', registrationError);
+//       });
+//   });
+// }
 
 // Export for potential external use
 window.FoodFun = {
