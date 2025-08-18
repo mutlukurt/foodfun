@@ -1,6 +1,6 @@
 import { prefersReducedMotion } from '../utils.js';
 import testimonials from '../data/testimonials.json';
-import { assetUrl } from '../utils/assetUrl';
+import { getAsset } from '../utils/assetsMap';
 
 export class Testimonials {
   constructor() {
@@ -136,8 +136,8 @@ export class Testimonials {
     
     const avatar = document.createElement('img');
     
-    // Use assetUrl helper for base-aware avatar resolution
-    avatar.src = assetUrl(testimonial.avatar);
+    // Use getAsset helper for bundled avatar resolution
+    avatar.src = getAsset(testimonial.avatar);
     
     avatar.alt = `${testimonial.name}, ${testimonial.role} from ${testimonial.location} - customer testimonial avatar`;
     avatar.className = 'testimonial-avatar';

@@ -1,6 +1,6 @@
 import { addToCart, formatPrice, formatCalories } from '../utils.js';
 import menuData from '../data/menu.json';
-import { assetUrl } from '../utils/assetUrl';
+import { getAsset } from '../utils/assetsMap';
 
 export class MenuCarousel {
   constructor() {
@@ -102,20 +102,19 @@ export class MenuCarousel {
     const card = document.createElement('div');
     card.className = `menu-card ${item.featured ? 'featured' : ''}`;
     
-    // Image with base-aware URL
+    // Image with bundled asset URL
     const imageContainer = document.createElement('div');
-    imageContainer.className = 'menu-card-image-container card-media';
+    imageContainer.className = 'menu-card__media';
     
     const image = document.createElement('img');
     
-    // Use assetUrl helper for base-aware image resolution
-    image.src = assetUrl(item.image);
+    // Use getAsset helper for bundled image resolution
+    image.src = getAsset(item.image);
     
     image.alt = `Delicious ${item.title.toLowerCase()} - a mouthwatering dish that showcases our culinary expertise`;
-    image.className = 'menu-card-image';
-    image.width = 800; // logical size for aspect-ratio 4/3
-    image.height = 600;
+    image.className = 'menu-card__img';
     image.loading = 'lazy';
+    image.decoding = 'async';
     
     // Add error handling for images
     image.onerror = () => {

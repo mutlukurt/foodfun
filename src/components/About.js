@@ -1,5 +1,5 @@
 import { prefersReducedMotion } from '../utils.js';
-import { assetUrl } from '../utils/assetUrl';
+import { getAsset } from '../utils/assetsMap';
 
 export class About {
   constructor() {
@@ -38,8 +38,8 @@ export class About {
     
     const image = document.createElement('img');
     
-    // Use assetUrl helper for base-aware about image resolution
-    image.src = assetUrl('plate-mediterranean-salad.svg');
+    // Use getAsset helper for bundled about image resolution
+    image.src = getAsset('plate-mediterranean-salad.svg');
     
     image.alt = 'Fresh Mediterranean salad illustration with greens and veggies';
     image.loading = 'lazy';

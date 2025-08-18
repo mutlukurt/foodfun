@@ -1,6 +1,6 @@
 import { smoothScrollTo, prefersReducedMotion } from '../utils.js';
 import { FloatingIngredients } from './FloatingIngredients.js';
-import { assetUrl } from '../utils/assetUrl';
+import { getAsset } from '../utils/assetsMap';
 
 export class Hero {
   constructor() {
@@ -104,8 +104,8 @@ export class Hero {
     // Hero image
     const heroImage = document.createElement('img');
     
-    // Use assetUrl helper for base-aware hero image resolution
-    heroImage.src = assetUrl('hero.svg');
+    // Use getAsset helper for bundled hero image resolution
+    heroImage.src = getAsset('hero.svg');
     
     heroImage.alt = 'Decorative noodles bowl illustration in hero circle';
     heroImage.className = 'hero-image';

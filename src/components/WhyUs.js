@@ -1,4 +1,4 @@
-import { assetUrl } from '../utils/assetUrl';
+import { getAsset } from '../utils/assetsMap';
 
 export class WhyUs {
   constructor() {
@@ -69,8 +69,8 @@ export class WhyUs {
   createIconImg(src, alt) {
     const img = document.createElement('img');
     
-    // Use assetUrl helper for base-aware icon resolution
-    img.src = assetUrl(src);
+    // Use getAsset helper for bundled icon resolution
+    img.src = getAsset(src);
     
     img.alt = alt;
     img.width = 60;
