@@ -1,3 +1,5 @@
+import { assetUrl } from '../utils/assetUrl';
+
 export class WhyUs {
   constructor() {
     this.init();
@@ -22,17 +24,17 @@ export class WhyUs {
     
     const features = [
       {
-        icon: this.createIconImg('assets/ic-fresh.svg', 'Freshness star icon'),
+        icon: this.createIconImg('ic-fresh.svg', 'Freshness star icon'),
         title: 'Fresh Food',
         description: 'We use only the freshest, locally-sourced ingredients to ensure every dish is bursting with flavor and nutrition.'
       },
       {
-        icon: this.createIconImg('assets/ic-offer.svg', 'Special offer badge icon'),
+        icon: this.createIconImg('ic-offer.svg', 'Special offer badge icon'),
         title: 'Best Offer',
         description: 'Enjoy competitive prices and special deals on our signature dishes, making quality dining accessible to everyone.'
       },
       {
-        icon: this.createIconImg('assets/ic-delivery.svg', 'Fast delivery truck icon'),
+        icon: this.createIconImg('ic-delivery.svg', 'Fast delivery truck icon'),
         title: 'Fast Delivery',
         description: 'Get your favorite meals delivered to your doorstep in under 30 minutes, hot and ready to enjoy.'
       }
@@ -67,15 +69,8 @@ export class WhyUs {
   createIconImg(src, alt) {
     const img = document.createElement('img');
     
-    // Create base-aware image URL
-    try {
-      const imgUrl = new URL(`../${src}`, import.meta.url).href;
-      img.src = imgUrl;
-    } catch (error) {
-      console.warn(`Failed to resolve icon URL for ${src}:`, error);
-      // Fallback to relative path
-      img.src = src;
-    }
+    // Use assetUrl helper for base-aware icon resolution
+    img.src = assetUrl(src);
     
     img.alt = alt;
     img.width = 60;

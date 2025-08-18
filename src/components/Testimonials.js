@@ -1,5 +1,6 @@
 import { prefersReducedMotion } from '../utils.js';
 import testimonials from '../data/testimonials.json';
+import { assetUrl } from '../utils/assetUrl';
 
 export class Testimonials {
   constructor() {
@@ -135,15 +136,8 @@ export class Testimonials {
     
     const avatar = document.createElement('img');
     
-    // Create base-aware avatar URL
-    try {
-      const avatarUrl = new URL(`../${testimonial.avatar}`, import.meta.url).href;
-      avatar.src = avatarUrl;
-    } catch (error) {
-      console.warn(`Failed to resolve avatar URL for ${testimonial.name}:`, error);
-      // Fallback to relative path
-      avatar.src = testimonial.avatar;
-    }
+    // Use assetUrl helper for base-aware avatar resolution
+    avatar.src = assetUrl(testimonial.avatar);
     
     avatar.alt = `${testimonial.name}, ${testimonial.role} from ${testimonial.location} - customer testimonial avatar`;
     avatar.className = 'testimonial-avatar';

@@ -1,6 +1,0 @@
-<svg width="280" height="200" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="140" cy="100" rx="120" ry="80" fill="#F5F5DC" stroke="#D2B48C" stroke-width="3"/>
-  <circle cx="140" cy="100" r="60" fill="#FFB6C1"/>
-  <circle cx="140" cy="100" r="40" fill="#FF69B4"/>
-  <text x="140" y="190" text-anchor="middle" fill="#8B4513" font-size="14" font-weight="bold">Smoothie Bowl</text>
-</svg>

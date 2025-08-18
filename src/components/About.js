@@ -1,4 +1,5 @@
 import { prefersReducedMotion } from '../utils.js';
+import { assetUrl } from '../utils/assetUrl';
 
 export class About {
   constructor() {
@@ -37,15 +38,8 @@ export class About {
     
     const image = document.createElement('img');
     
-    // Create base-aware image URL
-    try {
-      const imgUrl = new URL('../assets/plate-mediterranean-salad.svg', import.meta.url).href;
-      image.src = imgUrl;
-    } catch (error) {
-      console.warn('Failed to resolve about image URL:', error);
-      // Fallback to relative path
-      image.src = 'assets/plate-mediterranean-salad.svg';
-    }
+    // Use assetUrl helper for base-aware about image resolution
+    image.src = assetUrl('plate-mediterranean-salad.svg');
     
     image.alt = 'Fresh Mediterranean salad illustration with greens and veggies';
     image.loading = 'lazy';

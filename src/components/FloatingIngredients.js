@@ -1,3 +1,5 @@
+import { assetUrl } from '../utils/assetUrl';
+
 export class FloatingIngredients {
   constructor() {
     this.ingredients = [
@@ -22,8 +24,8 @@ export class FloatingIngredients {
 
   async createIngredientSVG(ingredient) {
     try {
-      // Create base-aware SVG URL
-      const svgUrl = new URL(`../assets/ing-${ingredient.name}.svg`, import.meta.url).href;
+      // Use assetUrl helper for base-aware SVG resolution
+      const svgUrl = assetUrl(`ing-${ingredient.name}.svg`);
       
       // Try to fetch the SVG file
       const response = await fetch(svgUrl);

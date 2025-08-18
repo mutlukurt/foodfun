@@ -1,5 +1,6 @@
 import { smoothScrollTo, prefersReducedMotion } from '../utils.js';
 import { FloatingIngredients } from './FloatingIngredients.js';
+import { assetUrl } from '../utils/assetUrl';
 
 export class Hero {
   constructor() {
@@ -103,15 +104,8 @@ export class Hero {
     // Hero image
     const heroImage = document.createElement('img');
     
-    // Create base-aware image URL
-    try {
-      const imgUrl = new URL('../assets/hero.svg', import.meta.url).href;
-      heroImage.src = imgUrl;
-    } catch (error) {
-      console.warn('Failed to resolve hero image URL:', error);
-      // Fallback to relative path
-      heroImage.src = 'assets/hero.svg';
-    }
+    // Use assetUrl helper for base-aware hero image resolution
+    heroImage.src = assetUrl('hero.svg');
     
     heroImage.alt = 'Decorative noodles bowl illustration in hero circle';
     heroImage.className = 'hero-image';

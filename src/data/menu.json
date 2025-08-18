@@ -5,7 +5,7 @@
     "price": 12.99,
     "kcal": 320,
     "tags": ["Healthy", "Vegan", "Featured"],
-    "image": "assets/plate-smoothie.svg",
+    "image": "plate-smoothie.svg",
     "featured": true
   },
   {
@@ -14,7 +14,7 @@
     "price": 15.99,
     "kcal": 450,
     "tags": ["Healthy", "Vegetarian", "Gluten-free"],
-    "image": "assets/plate-rice-salad.svg",
+    "image": "plate-rice-salad.svg",
     "featured": false
   },
   {
@@ -23,7 +23,7 @@
     "price": 28.99,
     "kcal": 680,
     "tags": ["Premium", "Protein", "Classic"],
-    "image": "assets/plate-steak.svg",
+    "image": "plate-steak.svg",
     "featured": false
   },
   {
@@ -32,7 +32,7 @@
     "price": 18.99,
     "kcal": 520,
     "tags": ["Asian", "Spicy", "Comfort"],
-    "image": "assets/plate-beef-noodles.svg",
+    "image": "plate-beef-noodles.svg",
     "featured": false
   },
   {
@@ -41,7 +41,7 @@
     "price": 16.99,
     "kcal": 380,
     "tags": ["Healthy", "Vegan", "Fresh"],
-    "image": "assets/plate-avocado-bowl.svg",
+    "image": "plate-avocado-bowl.svg",
     "featured": false
   },
   {
@@ -50,7 +50,7 @@
     "price": 14.99,
     "kcal": 290,
     "tags": ["Healthy", "Mediterranean", "Light"],
-    "image": "assets/plate-mediterranean-salad.svg",
+    "image": "plate-mediterranean-salad.svg",
     "featured": false
   },
   {
@@ -59,7 +59,7 @@
     "price": 9.99,
     "kcal": 180,
     "tags": ["Soup", "Vegetarian", "Warm"],
-    "image": "assets/plate-tomato-soup.svg",
+    "image": "plate-tomato-soup.svg",
     "featured": false
   },
   {
@@ -68,7 +68,7 @@
     "price": 24.99,
     "kcal": 420,
     "tags": ["Seafood", "Healthy", "Omega-3"],
-    "image": "assets/plate-salmon.svg",
+    "image": "plate-salmon.svg",
     "featured": false
   }
 ]

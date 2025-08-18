@@ -1,5 +1,6 @@
 import { addToCart, formatPrice, formatCalories } from '../utils.js';
 import menuData from '../data/menu.json';
+import { assetUrl } from '../utils/assetUrl';
 
 export class MenuCarousel {
   constructor() {
@@ -107,15 +108,8 @@ export class MenuCarousel {
     
     const image = document.createElement('img');
     
-    // Create base-aware image URL
-    try {
-      const imgUrl = new URL(`../${item.image}`, import.meta.url).href;
-      image.src = imgUrl;
-    } catch (error) {
-      console.warn(`Failed to resolve image URL for ${item.title}:`, error);
-      // Fallback to relative path
-      image.src = item.image;
-    }
+    // Use assetUrl helper for base-aware image resolution
+    image.src = assetUrl(item.image);
     
     image.alt = `Delicious ${item.title.toLowerCase()} - a mouthwatering dish that showcases our culinary expertise`;
     image.className = 'menu-card-image';
