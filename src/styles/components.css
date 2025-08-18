@@ -238,43 +238,53 @@
   animation: float 8s ease-in-out infinite reverse;
 }
 
-.hero-ingredients {
+/* Floating Ingredients */
+.fi-wrap {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  pointer-events: none;
   z-index: 3;
 }
 
-.hero-ingredient {
+.fi {
   position: absolute;
-  width: clamp(36px, 5vw, 64px);
-  height: clamp(36px, 5vw, 64px);
-  object-fit: contain;
-  animation: float 4s ease-in-out infinite;
+  width: clamp(28px, 4.5vw, 56px);
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+  animation: floaty 6s ease-in-out infinite;
 }
 
-.hero-ingredient:nth-child(1) {
-  top: 15%;
-  left: 15%;
-  animation-delay: 0s;
+.fi[data-name="avocado"] {
+  top: 14%;
+  right: 18%;
 }
 
-.hero-ingredient:nth-child(2) {
-  top: 25%;
-  right: 25%;
-  animation-delay: 1s;
+.fi[data-name="tomato"] {
+  top: 22%;
+  right: 6%;
 }
 
-.hero-ingredient:nth-child(3) {
-  bottom: 25%;
-  left: 20%;
-  animation-delay: 2s;
+.fi[data-name="lemon"] {
+  top: 48%;
+  left: 8%;
 }
 
-.hero-ingredient:nth-child(4) {
-  bottom: 15%;
-  right: 15%;
-  animation-delay: 3s;
+.fi[data-name="herb"] {
+  top: 30%;
+  right: 30%;
+}
+
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fi {
+    animation: none;
+  }
 }
 
 @keyframes float {

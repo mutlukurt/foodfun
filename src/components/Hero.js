@@ -1,4 +1,5 @@
 import { smoothScrollTo, prefersReducedMotion } from '../utils.js';
+import { FloatingIngredients } from './FloatingIngredients.js';
 
 export class Hero {
   constructor() {
@@ -120,42 +121,23 @@ export class Hero {
     shapesContainer.appendChild(shape1);
     shapesContainer.appendChild(shape2);
     
-    // Floating ingredients
-    const ingredientsContainer = document.createElement('div');
-    ingredientsContainer.className = 'hero-ingredients';
-    
-    const ingredients = [
-      { src: '/assets/ing-avocado.svg', alt: 'Fresh avocado slice illustration' },
-      { src: '/assets/ing-tomato.svg', alt: 'Ripe tomato illustration' },
-      { src: '/assets/ing-lemon.svg', alt: 'Fresh lemon slice illustration' },
-      { src: '/assets/ing-herb.svg', alt: 'Herb leaf illustration' }
-    ];
-    
-    ingredients.forEach((ingredient, index) => {
-      const img = document.createElement('img');
-      img.src = ingredient.src;
-      img.alt = ingredient.alt;
-      img.className = 'hero-ingredient';
-      
-      // Disable animations if reduced motion is preferred
-      if (prefersReducedMotion()) {
-        img.style.animation = 'none';
-      }
-      img.loading = 'lazy';
-      
-      ingredientsContainer.appendChild(img);
-    });
-    
     // Assemble right side
     rightSide.appendChild(shapesContainer);
     rightSide.appendChild(heroImage);
-    rightSide.appendChild(ingredientsContainer);
     
     // Assemble hero section
     heroContent.appendChild(leftSide);
     heroContent.appendChild(rightSide);
     
     heroContainer.appendChild(heroContent);
+    
+    // Render floating ingredients after the hero is mounted
+    this.renderFloatingIngredients(rightSide);
+  }
+
+  async renderFloatingIngredients(container) {
+    const floatingIngredients = new FloatingIngredients();
+    await floatingIngredients.renderFloatingIngredients(container);
   }
 
   createFreshIcon() {
