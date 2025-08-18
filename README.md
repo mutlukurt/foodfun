@@ -48,12 +48,12 @@ Modern, accessible, dark/light, responsive, menu carousel, testimonials, newslet
 ## Screenshots
 
 ### Row 1: Light vs Dark Hero
-![Light Mode](./docs/screen-light.png) (TODO)
-![Dark Mode](./docs/screen-dark.png) (TODO)
+![Light Mode](./docs/screen-hero-light.png)
+![Dark Mode](./docs/screen-hero-dark.png)
 
 ### Row 2: Menu Cards + Testimonials
-![Menu Cards](./docs/screen-menu.png) (TODO)
-![Testimonials](./docs/screen-testimonials.png) (TODO)
+![Menu Cards](./docs/screen-menu.png)
+![Testimonials](./docs/screen-testimonials.png)
 
 ## Getting Started
 
