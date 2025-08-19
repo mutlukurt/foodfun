@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
-    "predeploy": "npm run build",
+    "predeploy": "rm -rf docs && npm run build",
+    "deploy:docs": "npm run build",
     "shots": "node scripts/snapshots.mjs",
     "shot:dark": "ts-node scripts/capture-dark-homepage.ts"
   },
