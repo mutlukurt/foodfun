@@ -9,13 +9,13 @@
   z-index: 1000;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--border);
   transition: all var(--transition-normal);
 }
 
 [data-theme="dark"] .navbar {
   background: rgba(13, 15, 20, 0.95);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--border);
 }
 
 .navbar.scrolled {
@@ -130,14 +130,14 @@
     opacity: 0;
     visibility: hidden;
     transition: all var(--transition-normal);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--border);
     width: 100vw;
     z-index: 999;
   }
 
   [data-theme="dark"] .navbar-menu {
     background: var(--bg);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border);
   }
 
   .navbar-menu.open {
@@ -467,7 +467,7 @@
 }
 
 .menu-card {
-  background: #fff;
+  background: var(--card);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -809,11 +809,11 @@
 .footer {
   background: var(--bg-2);
   padding: var(--space-2xl) 0 var(--space-lg);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--border);
 }
 
 [data-theme="dark"] .footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border);
 }
 
 .footer-container {
@@ -881,12 +881,12 @@
 .footer-bottom {
   text-align: center;
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--border);
   color: var(--muted);
 }
 
 [data-theme="dark"] .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border);
 }
 
 /* ===== THEME TOGGLE ===== */
@@ -973,15 +973,15 @@
 }
 
 .toast.success {
-  border-left-color: #10B981;
+  border-left-color: var(--success);
 }
 
 .toast.error {
-  border-left-color: #EF4444;
+  border-left-color: var(--error);
 }
 
 .toast.info {
-  border-left-color: #3B82F6;
+  border-left-color: var(--info);
 }
 
 @keyframes slideIn {

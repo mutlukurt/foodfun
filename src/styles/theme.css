@@ -1,0 +1,383 @@
+/* ===== THEME SYSTEM ===== */
+
+/* Light Theme (Default) */
+:root {
+  /* Core Colors */
+  --bg: #ffffff;
+  --bg-2: #fafafa;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --text: #1b1b1b;
+  --text-secondary: #6a6a6a;
+  --muted: #6a6a6a;
+  
+  /* Brand Colors */
+  --brand: #f7b500;
+  --brand-2: #ffe08a;
+  --brand-hover: #e6a400;
+  
+  /* Semantic Colors */
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  
+  /* Borders & Shadows */
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+  
+  /* Overlays */
+  --overlay: rgba(0, 0, 0, 0.05);
+  --overlay-hover: rgba(0, 0, 0, 0.1);
+  
+  /* Focus & Selection */
+  --focus-ring: var(--brand);
+  --selection-bg: rgba(247, 181, 0, 0.2);
+}
+
+/* Dark Theme */
+:root[data-theme="dark"] {
+  /* Core Colors */
+  --bg: #0d0f14;
+  --bg-2: #12151b;
+  --surface: #1a1d24;
+  --card: #1a1d24;
+  --text: #edeff3;
+  --text-secondary: #a9b2c3;
+  --muted: #a9b2c3;
+  
+  /* Brand Colors (same in both themes) */
+  --brand: #f7b500;
+  --brand-2: #3a3000;
+  --brand-hover: #e6a400;
+  
+  /* Semantic Colors */
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  
+  /* Borders & Shadows */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  
+  /* Overlays */
+  --overlay: rgba(255, 255, 255, 0.05);
+  --overlay-hover: rgba(255, 255, 255, 0.1);
+  
+  /* Focus & Selection */
+  --focus-ring: var(--brand);
+  --selection-bg: rgba(247, 181, 0, 0.3);
+}
+
+/* System Theme Detection */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    /* Core Colors */
+    --bg: #0d0f14;
+    --bg-2: #12151b;
+    --surface: #1a1d24;
+    --card: #1a1d24;
+    --text: #edeff3;
+    --text-secondary: #a9b2c3;
+    --muted: #a9b2c3;
+    
+    /* Brand Colors (same in both themes) */
+    --brand: #f7b500;
+    --brand-2: #3a3000;
+    --brand-hover: #e6a400;
+    
+    /* Semantic Colors */
+    --success: #10b981;
+    --error: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    
+    /* Borders & Shadows */
+    --border: rgba(255, 255, 255, 0.1);
+    --border-hover: rgba(255, 255, 255, 0.15);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+    
+    /* Overlays */
+    --overlay: rgba(255, 255, 255, 0.05);
+    --overlay-hover: rgba(255, 255, 255, 0.1);
+    
+    /* Focus & Selection */
+    --focus-ring: var(--brand);
+    --selection-bg: rgba(247, 181, 0, 0.3);
+  }
+}
+
+/* ===== GLOBAL THEME APPLICATIONS ===== */
+
+/* Base elements */
+html {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+/* Debug indicator - remove this after testing */
+body::before {
+  content: 'Theme: ' attr(data-theme);
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: var(--brand);
+  color: var(--text);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  z-index: 10000;
+  font-family: monospace;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--text);
+}
+
+::-moz-selection {
+  background-color: var(--selection-bg);
+  color: var(--text);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand);
+}
+
+/* ===== COMPONENT THEME OVERRIDES ===== */
+
+/* Cards */
+.card,
+.menu-card,
+.why-us-card,
+.testimonial,
+.newsletter-container {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover,
+.menu-card:hover,
+.why-us-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Form elements */
+input,
+textarea,
+select {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(247, 181, 0, 0.1);
+}
+
+/* Buttons */
+.btn {
+  background-color: var(--brand);
+  color: var(--text);
+  border: 1px solid var(--brand);
+}
+
+.btn:hover {
+  background-color: var(--brand-hover);
+  border-color: var(--brand-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text);
+  border: 2px solid var(--brand);
+}
+
+.btn-secondary:hover {
+  background-color: var(--brand);
+  color: var(--bg);
+}
+
+/* Navigation */
+.navbar {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-menu {
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--bg-2);
+  border-top: 1px solid var(--border);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+}
+
+/* Theme toggle */
+.theme-toggle {
+  background-color: var(--brand);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+}
+
+.theme-toggle:hover {
+  background-color: var(--brand-hover);
+  transform: scale(1.1);
+}
+
+/* Toast notifications */
+.toast {
+  background-color: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Menu cards specific overrides */
+.menu-card {
+  background-color: var(--card) !important;
+}
+
+.menu-card.featured {
+  background-color: var(--brand-2);
+  border: 2px solid var(--brand);
+}
+
+/* Why us cards */
+.why-us-card {
+  background-color: var(--card);
+}
+
+/* Testimonials */
+.testimonial {
+  background-color: var(--card);
+}
+
+/* Newsletter section */
+.newsletter-section::before {
+  background: linear-gradient(135deg, 
+    rgba(247, 181, 0, 0.1) 0%, 
+    rgba(255, 224, 138, 0.1) 100%
+  );
+}
+
+/* Hero section */
+.hero-section {
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+/* About section */
+.about-section {
+  background-color: var(--bg);
+}
+
+/* Why us section */
+.why-us-section {
+  background-color: var(--bg-2);
+}
+
+/* Menu section */
+.menu-section {
+  background-color: var(--bg);
+}
+
+/* Testimonials section */
+.testimonials-section {
+  background-color: var(--bg-2);
+}
+
+/* Newsletter section */
+.newsletter-section {
+  background-color: var(--bg);
+}
+
+/* ===== TRANSITIONS ===== */
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 180ms ease, 
+              color 180ms ease, 
+              border-color 180ms ease, 
+              box-shadow 180ms ease;
+}
+
+/* Disable transitions during theme change to avoid flash */
+.theme-changing * {
+  transition: none !important;
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+  
+  :root[data-theme="dark"] {
+    --border: rgba(255, 255, 255, 0.3);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

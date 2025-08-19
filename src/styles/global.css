@@ -23,15 +23,6 @@ body {
 
 /* ===== CSS CUSTOM PROPERTIES (DESIGN TOKENS) ===== */
 :root {
-  /* Light Theme Colors */
-  --brand: #F7B500;
-  --brand-2: #FFE08A;
-  --text: #1B1B1B;
-  --muted: #6A6A6A;
-  --bg: #FFFFFF;
-  --bg-2: #FAFAFA;
-  --radius: 18px;
-  
   /* Spacing Scale */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -41,26 +32,13 @@ body {
   --space-2xl: 4rem;
   --space-3xl: 6rem;
   
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
-  
   /* Transitions */
   --transition-fast: 120ms ease;
   --transition-normal: 180ms ease;
   --transition-slow: 300ms ease;
-}
-
-/* Dark Theme Overrides */
-[data-theme="dark"] {
-  --bg: #0D0F14;
-  --bg-2: #12151B;
-  --text: #EDEFF3;
-  --muted: #A9B2C3;
-  --brand: #F7B500;
-  --brand-2: #3A3000;
+  
+  /* Border Radius */
+  --radius: 18px;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -238,7 +216,7 @@ html, body {
 
 .text-brand { color: var(--brand); }
 .text-muted { color: var(--muted); }
-.text-white { color: #FFFFFF; }
+.text-white { color: var(--text); }
 
 .font-bold { font-weight: 700; }
 .font-semibold { font-weight: 600; }
@@ -456,7 +434,7 @@ html, body {
   }
   
   body {
-    background: white !important;
-    color: black !important;
+    background: var(--bg) !important;
+    color: var(--text) !important;
   }
 }

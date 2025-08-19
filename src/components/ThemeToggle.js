@@ -1,30 +1,19 @@
-import { storage } from '../utils.js';
+import { themeManager, setTheme, getTheme, toggleTheme } from '../utils/themeManager.js';
 
 export class ThemeToggle {
   constructor() {
-    this.currentTheme = 'light';
     this.init();
   }
 
   init() {
-    this.loadTheme();
     this.createThemeToggle();
     this.bindEvents();
-  }
-
-  loadTheme() {
-    // Check localStorage first
-    const savedTheme = storage.get('ff-theme');
+    this.updateIcon();
     
-    if (savedTheme) {
-      this.currentTheme = savedTheme;
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      this.currentTheme = prefersDark ? 'dark' : 'light';
-    }
-    
-    this.applyTheme();
+    // Listen for theme changes from other sources
+    window.addEventListener('themechange', () => {
+      this.updateIcon();
+    });
   }
 
   createThemeToggle() {
@@ -51,7 +40,10 @@ export class ThemeToggle {
     svg.setAttribute('stroke-linecap', 'round');
     svg.setAttribute('stroke-linejoin', 'round');
     
-    if (this.currentTheme === 'dark') {
+    const currentTheme = getTheme();
+    const effectiveTheme = themeManager.getEffectiveTheme();
+    
+    if (effectiveTheme === 'dark') {
       // Sun icon for dark theme
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       circle.setAttribute('cx', '12');
@@ -130,40 +122,28 @@ export class ThemeToggle {
     const toggle = document.querySelector('.theme-toggle');
     
     toggle.addEventListener('click', () => {
-      this.toggleTheme();
-    });
-    
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', (e) => {
-      // Only update if user hasn't manually set a theme
-      if (!storage.get('ff-theme')) {
-        this.currentTheme = e.matches ? 'dark' : 'light';
-        this.applyTheme();
-        this.updateIcon();
-      }
+      this.handleThemeToggle();
     });
   }
 
-  toggleTheme() {
-    this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-    this.applyTheme();
-    this.updateIcon();
-    this.saveTheme();
-  }
-
-  applyTheme() {
-    const html = document.documentElement;
+  handleThemeToggle() {
+    console.log('🔄 Theme toggle clicked');
+    // Add class to prevent transition flash during theme change
+    document.body.classList.add('theme-changing');
     
-    if (this.currentTheme === 'dark') {
-      html.setAttribute('data-theme', 'dark');
-    } else {
-      html.removeAttribute('data-theme');
-    }
+    // Toggle theme
+    toggleTheme();
+    
+    // Remove class after theme change
+    setTimeout(() => {
+      document.body.classList.remove('theme-changing');
+    }, 200);
   }
 
   updateIcon() {
     const toggle = document.querySelector('.theme-toggle');
+    if (!toggle) return;
+    
     const oldIcon = toggle.querySelector('svg');
     
     if (oldIcon) {
@@ -172,9 +152,5 @@ export class ThemeToggle {
     
     const newIcon = this.createThemeIcon();
     toggle.appendChild(newIcon);
-  }
-
-  saveTheme() {
-    storage.set('ff-theme', this.currentTheme);
   }
 }
