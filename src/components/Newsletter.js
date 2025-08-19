@@ -12,33 +12,35 @@ export class Newsletter {
   }
 
   createNewsletter() {
-    const newsletterContainer = document.querySelector('#newsletter');
+    const newsletterContainer = document.querySelector('#subscribe');
     
     const newsletterContent = document.createElement('div');
-    newsletterContent.className = 'newsletter-container';
+    newsletterContent.className = 'mx-auto max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 md:p-8 shadow-lg';
     
-    const heading = document.createElement('h2');
-    heading.className = 'h2';
+    const heading = document.createElement('h3');
+    heading.className = 'text-2xl md:text-3xl font-bold text-[var(--text)] text-center';
     heading.textContent = 'Stay Updated with FoodFun';
     
     const description = document.createElement('p');
-    description.className = 'body';
-    description.textContent = 'Subscribe to our newsletter for exclusive offers, new menu items, and special events. Be the first to know about our latest culinary creations!';
+    description.className = 'mt-3 text-center text-sm md:text-base text-[var(--muted)]';
+    description.textContent = 'Subscribe to our newsletter for exclusive offers, new menu items, and special events.';
     
     const form = document.createElement('form');
-    form.className = 'newsletter-form';
+    form.className = 'mt-6 grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto] sm:items-center';
+    form.setAttribute('role', 'form');
     form.setAttribute('novalidate', '');
     
     const emailInput = document.createElement('input');
     emailInput.type = 'email';
-    emailInput.className = 'newsletter-input';
+    emailInput.name = 'email';
+    emailInput.className = 'h-12 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]';
     emailInput.placeholder = 'Enter your email address';
-    emailInput.setAttribute('aria-label', 'Email address for newsletter subscription');
+    emailInput.setAttribute('aria-label', 'Email address');
     emailInput.required = true;
     
     const subscribeBtn = document.createElement('button');
     subscribeBtn.type = 'submit';
-    subscribeBtn.className = 'btn btn-primary newsletter-btn';
+    subscribeBtn.className = 'h-12 rounded-xl bg-[var(--accent)] px-5 font-semibold text-black hover:opacity-90 active:opacity-100 transition w-full sm:w-auto';
     subscribeBtn.textContent = 'Subscribe';
     
     form.appendChild(emailInput);
@@ -52,9 +54,9 @@ export class Newsletter {
   }
 
   bindEvents() {
-    const form = document.querySelector('.newsletter-form');
-    const emailInput = form.querySelector('.newsletter-input');
-    const subscribeBtn = form.querySelector('.newsletter-btn');
+    const form = document.querySelector('form[role="form"]');
+    const emailInput = form.querySelector('input[type="email"]');
+    const subscribeBtn = form.querySelector('button[type="submit"]');
     
     // Form submission
     form.addEventListener('submit', (e) => {
@@ -81,14 +83,14 @@ export class Newsletter {
   }
 
   validateEmail(email) {
-    const emailInput = document.querySelector('.newsletter-input');
-    const subscribeBtn = document.querySelector('.newsletter-btn');
+    const emailInput = document.querySelector('input[type="email"]');
+    const subscribeBtn = document.querySelector('button[type="submit"]');
     
-    // Remove existing validation classes
-    emailInput.classList.remove('valid', 'invalid');
+    // Remove existing validation messages
+    this.removeValidationMessages();
     
     if (!email) {
-      emailInput.classList.add('invalid');
+      this.showError('Please enter a valid email.');
       subscribeBtn.disabled = true;
       return false;
     }
@@ -97,11 +99,10 @@ export class Newsletter {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
     if (emailPattern.test(email)) {
-      emailInput.classList.add('valid');
       subscribeBtn.disabled = false;
       return true;
     } else {
-      emailInput.classList.add('invalid');
+      this.showError('Please enter a valid email.');
       subscribeBtn.disabled = true;
       return false;
     }
@@ -114,12 +115,12 @@ export class Newsletter {
     
     // Check if already subscribed
     if (isSubscribed()) {
-      this.showMessage('You are already subscribed to our newsletter!', 'info');
+      this.showSuccess('You are already subscribed to our newsletter!');
       return;
     }
     
     // Simulate subscription process
-    const subscribeBtn = document.querySelector('.newsletter-btn');
+    const subscribeBtn = document.querySelector('button[type="submit"]');
     const originalText = subscribeBtn.textContent;
     
     subscribeBtn.disabled = true;
@@ -134,15 +135,14 @@ export class Newsletter {
       this.updateSubscriptionStatus();
       
       // Reset form
-      const emailInput = document.querySelector('.newsletter-input');
+      const emailInput = document.querySelector('input[type="email"]');
       emailInput.value = '';
-      emailInput.classList.remove('valid', 'invalid');
       
       // Reset button
       subscribeBtn.disabled = false;
       subscribeBtn.textContent = originalText;
       
-      this.showMessage('Thank you for subscribing! Welcome to the FoodFun family!', 'success');
+      this.showSuccess('Thanks! You\'re subscribed.');
     }, 1000);
   }
 
@@ -153,9 +153,9 @@ export class Newsletter {
   }
 
   updateSubscriptionStatus() {
-    const form = document.querySelector('.newsletter-form');
-    const emailInput = form.querySelector('.newsletter-input');
-    const subscribeBtn = form.querySelector('.newsletter-btn');
+    const form = document.querySelector('form[role="form"]');
+    const emailInput = form.querySelector('input[type="email"]');
+    const subscribeBtn = form.querySelector('button[type="submit"]');
     
     if (isSubscribed()) {
       // Disable form and show subscribed message
@@ -165,54 +165,44 @@ export class Newsletter {
       
       subscribeBtn.disabled = true;
       subscribeBtn.textContent = 'Subscribed!';
-      subscribeBtn.classList.add('btn-secondary');
-      subscribeBtn.classList.remove('btn-primary');
+      subscribeBtn.className = 'h-12 rounded-xl bg-[var(--muted)] px-5 font-semibold text-[var(--text)] opacity-50 cursor-not-allowed w-full sm:w-auto';
       
       // Add success message
-      const successMessage = document.createElement('p');
-      successMessage.className = 'newsletter-success';
-      successMessage.textContent = 'You are successfully subscribed to our newsletter!';
-      successMessage.style.color = 'var(--brand)';
-      successMessage.style.fontWeight = '600';
-      successMessage.style.marginTop = 'var(--space-sm)';
-      
-      form.appendChild(successMessage);
+      this.showSuccess('You are successfully subscribed to our newsletter!');
     }
   }
 
-  showMessage(message, type = 'info') {
-    // Remove existing messages
-    const existingMessage = document.querySelector('.newsletter-message');
-    if (existingMessage) {
-      existingMessage.remove();
-    }
+  showError(message) {
+    this.removeValidationMessages();
     
-    const messageElement = document.createElement('div');
-    messageElement.className = `newsletter-message newsletter-message-${type}`;
-    messageElement.textContent = message;
-    messageElement.style.marginTop = 'var(--space-sm)';
-    messageElement.style.padding = 'var(--space-sm)';
-    messageElement.style.borderRadius = 'var(--radius)';
-    messageElement.style.fontSize = '14px';
+    const errorElement = document.createElement('p');
+    errorElement.className = 'mt-2 text-sm text-red-500';
+    errorElement.id = 'subscribe-error';
+    errorElement.setAttribute('aria-live', 'polite');
+    errorElement.textContent = message;
     
-    if (type === 'success') {
-      messageElement.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
-      messageElement.style.color = '#10B981';
-      messageElement.style.border = '1px solid rgba(16, 185, 129, 0.2)';
-    } else if (type === 'info') {
-      messageElement.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
-      messageElement.style.color = '#3B82F6';
-      messageElement.style.border = '1px solid rgba(59, 130, 246, 0.2)';
-    }
+    const form = document.querySelector('form[role="form"]');
+    form.appendChild(errorElement);
+  }
+
+  showSuccess(message) {
+    this.removeValidationMessages();
     
-    const form = document.querySelector('.newsletter-form');
-    form.appendChild(messageElement);
+    const successElement = document.createElement('p');
+    successElement.className = 'mt-2 text-sm text-emerald-500';
+    successElement.id = 'subscribe-success';
+    successElement.setAttribute('aria-live', 'polite');
+    successElement.textContent = message;
     
-    // Auto-remove message after 5 seconds
-    setTimeout(() => {
-      if (messageElement.parentNode) {
-        messageElement.remove();
-      }
-    }, 5000);
+    const form = document.querySelector('form[role="form"]');
+    form.appendChild(successElement);
+  }
+
+  removeValidationMessages() {
+    const existingError = document.getElementById('subscribe-error');
+    const existingSuccess = document.getElementById('subscribe-success');
+    
+    if (existingError) existingError.remove();
+    if (existingSuccess) existingSuccess.remove();
   }
 }
