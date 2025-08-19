@@ -6,7 +6,6 @@ class ThemeManager {
   }
 
   init() {
-    console.log('🎨 ThemeManager initializing...');
     // Apply theme before first paint to avoid flash
     this.loadTheme();
     this.applyTheme();
@@ -17,7 +16,6 @@ class ThemeManager {
         this.applyTheme();
       }
     });
-    console.log('✅ ThemeManager initialized');
   }
 
   loadTheme() {
@@ -39,11 +37,10 @@ class ThemeManager {
 
   applyTheme() {
     const effectiveTheme = this.getEffectiveTheme();
-    console.log('🎨 Applying theme:', effectiveTheme);
     document.documentElement.setAttribute('data-theme', effectiveTheme);
     
     // Update meta theme-color for mobile browsers
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]);
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#0D0F14' : '#FFFFFF');
     }

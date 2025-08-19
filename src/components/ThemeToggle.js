@@ -127,7 +127,6 @@ export class ThemeToggle {
   }
 
   handleThemeToggle() {
-    console.log('🔄 Theme toggle clicked');
     // Add class to prevent transition flash during theme change
     document.body.classList.add('theme-changing');
     
