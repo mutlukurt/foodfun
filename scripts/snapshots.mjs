@@ -4,54 +4,68 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
 
-const SCREENSHOTS_DIR = 'docs';
+const SCREENSHOTS_DIR = 'assets/screenshots';
 const SCREENSHOTS = [
   {
-    name: 'screen-hero-light',
-    description: 'Hero section (Light theme)',
+    name: 'dashboard',
+    description: 'Dashboard / Homepage (Light theme)',
     viewport: { width: 1440, height: 900 },
     scrollTo: null,
     theme: 'light'
   },
   {
-    name: 'screen-hero-dark',
-    description: 'Hero section (Dark theme)',
+    name: 'dashboard-dark',
+    description: 'Dashboard / Homepage (Dark theme)',
     viewport: { width: 1440, height: 900 },
     scrollTo: null,
     theme: 'dark'
   },
   {
-    name: 'screen-menu',
-    description: 'Menu section',
+    name: 'workspace',
+    description: 'Menu Workspace Section',
     viewport: { width: 1440, height: 900 },
     scrollTo: '#menu',
     theme: 'light'
   },
   {
-    name: 'screen-testimonials',
-    description: 'Testimonials section (Mobile)',
-    viewport: { width: 390, height: 844 },
+    name: 'about-section',
+    description: 'About Section',
+    viewport: { width: 1440, height: 900 },
+    scrollTo: '#about',
+    theme: 'light'
+  },
+  {
+    name: 'testimonials',
+    description: 'Testimonials Section',
+    viewport: { width: 1440, height: 900 },
     scrollTo: '#testimonials',
+    theme: 'light'
+  },
+  {
+    name: 'mobile-view',
+    description: 'Mobile Responsive View',
+    viewport: { width: 390, height: 844 },
+    scrollTo: null,
     theme: 'light'
   }
 ];
 
 async function getTargetUrl() {
+  // Check if dev server is running on port 5173
+  try {
+    const response = await fetch('http://localhost:5173/');
+    if (response.ok) {
+      console.log('🚀 Found dev server, using localhost:5173');
+      return 'http://localhost:5173/';
+    }
+  } catch (error) {
+    // Dev server not running
+  }
+  
   // Check if dist exists (built version)
   if (fs.existsSync('dist')) {
     console.log('📁 Found dist/ directory, using built version');
     return 'http://localhost:4173/foodfun/';
-  }
-  
-  // Check if dev server is running on port 5173
-  try {
-    const response = await fetch('http://localhost:5173/foodfun/');
-    if (response.ok) {
-      console.log('🚀 Found dev server, using localhost:5173');
-      return 'http://localhost:5173/foodfun/';
-    }
-  } catch (error) {
-    // Dev server not running
   }
   
   // Fallback to live URL

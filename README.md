@@ -21,23 +21,28 @@ A modern, responsive restaurant landing page built with **Vite**, **Vanilla Java
 
 ## 🖼️ Screenshots
 
-### Desktop View
-![Desktop Hero Section](./assets/screenshots/screen-hero-light.png)
-*Hero section with floating ingredients and call-to-action buttons*
+### Dashboard / Homepage
+![Dashboard Light Theme](./assets/screenshots/dashboard.png)
+*Light theme homepage with hero section and floating ingredients*
 
-![Desktop Menu Section](./assets/screenshots/screen-menu.png)
-*Interactive menu grid with food cards and pricing*
+![Dashboard Dark Theme](./assets/screenshots/dashboard-dark.png)
+*Dark theme homepage with elegant contrast and modern aesthetics*
 
-### Mobile View
-![Mobile Testimonials](./assets/screenshots/screen-testimonials.png)
-*Customer testimonials with responsive design*
+### Menu Workspace
+![Menu Workspace](./assets/screenshots/workspace.png)
+*Interactive menu grid with food cards, pricing, and hover effects*
 
-### Theme Switching
-![Light Theme](./assets/screenshots/screen-hero-light.png)
-*Light theme with warm colors and clean design*
+### About Section
+![About Section](./assets/screenshots/about-section.png)
+*About section showcasing restaurant story and values*
 
-![Dark Theme](./assets/screenshots/screen-hero-dark.png)
-*Dark theme with elegant contrast and modern aesthetics*
+### Testimonials
+![Testimonials](./assets/screenshots/testimonials.png)
+*Customer testimonials with responsive design and auto-playing slider*
+
+### Mobile Responsive View
+![Mobile View](./assets/screenshots/mobile-view.png)
+*Mobile-optimized layout with touch-friendly navigation*
 
 ## 🛠️ Tech Stack
 
