@@ -200,19 +200,9 @@
     width: 100%;
     max-width: 100%;
     margin: 0;
-  }
-  
-  .card-media {
-    aspect-ratio: 4/3;
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  
-  .menu-card-image {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    object-fit: contain;
-    display: block;
   }
   
   /* Why us section mobile optimization */

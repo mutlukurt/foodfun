@@ -99,6 +99,38 @@ p, .body {
   padding-inline: clamp(16px, 4vw, 24px);
 }
 
+/* Line clamping utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Text utilities */
+.text-sm {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.text-muted-foreground {
+  color: var(--muted);
+}
+
 .container-wide {
   width: min(100%, 1400px);
   margin-inline: auto;

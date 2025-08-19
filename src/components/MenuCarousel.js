@@ -100,11 +100,11 @@ export class MenuCarousel {
 
   createMenuCard(item) {
     const card = document.createElement('div');
-    card.className = `menu-card ${item.featured ? 'featured' : ''}`;
+    card.className = `menu-card h-full flex flex-col ${item.featured ? 'featured' : ''}`;
     
     // Image with bundled asset URL
     const imageContainer = document.createElement('div');
-    imageContainer.className = 'menu-card__media';
+    imageContainer.className = 'card-media';
     
     const image = document.createElement('img');
     
@@ -112,7 +112,7 @@ export class MenuCarousel {
     image.src = getAsset(item.image);
     
     image.alt = `Delicious ${item.title.toLowerCase()} - a mouthwatering dish that showcases our culinary expertise`;
-    image.className = 'menu-card__img';
+    image.className = 'w-full h-full object-contain';
     image.loading = 'lazy';
     image.decoding = 'async';
     
@@ -126,14 +126,14 @@ export class MenuCarousel {
     
     // Content
     const content = document.createElement('div');
-    content.className = 'menu-card-content';
+    content.className = 'card-body grow flex flex-col gap-3';
     
     // Header with title and price
     const header = document.createElement('div');
-    header.className = 'menu-card-header';
+    header.className = 'title-price flex items-start justify-between gap-2';
     
     const title = document.createElement('h3');
-    title.className = 'menu-card-title';
+    title.className = 'menu-card-title line-clamp-2';
     title.textContent = item.title;
     
     const price = document.createElement('span');
@@ -145,12 +145,12 @@ export class MenuCarousel {
     
     // Calories
     const calories = document.createElement('p');
-    calories.className = 'menu-card-kcal';
+    calories.className = 'kcal text-sm text-muted-foreground';
     calories.textContent = formatCalories(item.kcal);
     
     // Tags
     const tagsContainer = document.createElement('div');
-    tagsContainer.className = 'menu-card-tags';
+    tagsContainer.className = 'tags flex flex-wrap gap-2';
     
     item.tags.forEach(tag => {
       const tagElement = document.createElement('span');
@@ -161,17 +161,22 @@ export class MenuCarousel {
     
     // CTA Button
     const ctaBtn = document.createElement('button');
-    ctaBtn.className = 'btn btn-primary menu-card-cta';
+    ctaBtn.className = 'btn w-full';
     ctaBtn.textContent = 'Add to cart';
     ctaBtn.addEventListener('click', () => {
       addToCart(item.id);
     });
     
+    // CTA wrapper for bottom alignment
+    const ctaWrapper = document.createElement('div');
+    ctaWrapper.className = 'cta mt-auto';
+    ctaWrapper.appendChild(ctaBtn);
+    
     // Assemble content
     content.appendChild(header);
     content.appendChild(calories);
     content.appendChild(tagsContainer);
-    content.appendChild(ctaBtn);
+    content.appendChild(ctaWrapper);
     
     // Assemble card
     card.appendChild(imageContainer);
