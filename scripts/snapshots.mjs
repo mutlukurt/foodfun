@@ -68,19 +68,34 @@ async function takeScreenshot(page, screenshot, targetUrl) {
     // Set theme if needed
     if (theme === 'dark') {
       try {
-        // Try to find and click theme toggle button
-        const themeToggle = await page.$('.theme-toggle');
-        if (themeToggle) {
-          await themeToggle.click();
-          await new Promise(resolve => setTimeout(resolve, 500)); // Wait for theme transition
-        } else {
-          // Fallback: set theme via JavaScript
-          await page.evaluate(() => {
-            document.documentElement.setAttribute('data-theme', 'dark');
-          });
-        }
+        console.log(`🌙 Setting dark theme for ${name}...`);
+        
+        // Set theme via JavaScript - more reliable approach
+        await page.evaluate(() => {
+          // Set localStorage first
+          localStorage.setItem('theme', 'dark');
+          
+          // Apply theme immediately
+          document.documentElement.setAttribute('data-theme', 'dark');
+          
+          // Also update meta theme-color if it exists
+          const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+          if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', '#0D0F14');
+          }
+          
+          // Force any CSS custom properties to update
+          document.body.style.display = 'none';
+          document.body.offsetHeight; // trigger reflow
+          document.body.style.display = '';
+        });
+        
+        // Wait longer for theme transition and any CSS changes
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log(`✅ Dark theme applied for ${name}`);
+        
       } catch (error) {
-        console.log(`⚠️  Could not set dark theme for ${name}, continuing...`);
+        console.log(`⚠️  Could not set dark theme for ${name}: ${error.message}`);
       }
     }
     
