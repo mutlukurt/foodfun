@@ -25,7 +25,7 @@ A modern, responsive restaurant landing page built with **Vite**, **Vanilla Java
 ![Dashboard Light Theme](./assets/screenshots/dashboard.png)
 *Light theme homepage with hero section and floating ingredients*
 
-![Dashboard Dark Theme](./assets/screenshots/dark-homepage.png)
+![Dashboard Dark Theme](./assets/screenshots/dark-homepage-1755600108223.png)
 *Dark theme homepage with elegant contrast and modern aesthetics*
 
 ### Menu Workspace
