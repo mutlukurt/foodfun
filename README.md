@@ -22,24 +22,21 @@ A modern, responsive restaurant landing page built with **Vite**, **Vanilla Java
 ## 🖼️ Screenshots
 
 ### Desktop View
-![Desktop Hero Section](./assets/screenshots/Screenshot%202025-08-18%20at%208.53.46%20PM.png)
+![Desktop Hero Section](./assets/screenshots/screen-hero-light.png)
 *Hero section with floating ingredients and call-to-action buttons*
 
-![Desktop Menu Section](./assets/screenshots/Screenshot%202025-08-18%20at%208.51.01%20PM.png)
+![Desktop Menu Section](./assets/screenshots/screen-menu.png)
 *Interactive menu grid with food cards and pricing*
 
 ### Mobile View
-![Mobile Navigation](./assets/screenshots/Screenshot%202025-08-18%20at%208.11.40%20PM.png)
-*Mobile hamburger menu and responsive navigation*
-
-![Mobile Menu Cards](./assets/screenshots/Screenshot%202025-08-18%20at%208.11.34%20PM.png)
-*Mobile-optimized menu cards with touch-friendly interactions*
+![Mobile Testimonials](./assets/screenshots/screen-testimonials.png)
+*Customer testimonials with responsive design*
 
 ### Theme Switching
-![Light Theme](./assets/screenshots/Screenshot%202025-08-18%20at%207.05.46%20PM.png)
+![Light Theme](./assets/screenshots/screen-hero-light.png)
 *Light theme with warm colors and clean design*
 
-![Dark Theme](./assets/screenshots/Screenshot%202025-08-18%20at%207.05.49%20PM.png)
+![Dark Theme](./assets/screenshots/screen-hero-dark.png)
 *Dark theme with elegant contrast and modern aesthetics*
 
 ## 🛠️ Tech Stack
