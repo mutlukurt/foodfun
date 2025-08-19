@@ -19,30 +19,19 @@ A modern, responsive restaurant landing page built with **Vite**, **Vanilla Java
 - 🚀 **Performance** - Optimized images, lazy loading, and efficient CSS
 - 📱 **PWA Ready** - Service worker and manifest for app-like experience
 
-## 🖼️ Screenshots
+## 📸 Project Screenshots
 
-### Dashboard / Homepage
-![Dashboard Light Theme](./assets/screenshots/dashboard.png)
-*Light theme homepage with hero section and floating ingredients*
+![Homepage](./docs/home.png)
+*Homepage hero & navbar with modern design*
 
-![Dashboard Dark Theme](./assets/screenshots/dark-homepage-1755600108223.png)
-*Dark theme homepage with elegant contrast and modern aesthetics*
+![Menu](./docs/menu.png)
+*Menu section with aligned cards and bottom-aligned buttons*
 
-### Menu Workspace
-![Menu Workspace](./assets/screenshots/workspace.png)
-*Interactive menu grid with food cards, pricing, and hover effects*
+![Reviews](./docs/reviews.png)
+*Reviews section with carousel and testimonials*
 
-### About Section
-![About Section](./assets/screenshots/about-section.png)
-*About section showcasing restaurant story and values*
-
-### Testimonials
-![Testimonials](./assets/screenshots/testimonials.png)
-*Customer testimonials with responsive design and auto-playing slider*
-
-### Mobile Responsive View
-![Mobile View](./assets/screenshots/mobile-view.png)
-*Mobile-optimized layout with touch-friendly navigation*
+![Subscribe](./docs/subscribe.png)
+*Newsletter/subscribe section with polished card design*
 
 ## 🛠️ Tech Stack
 

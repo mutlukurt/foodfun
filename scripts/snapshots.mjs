@@ -4,14 +4,35 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
 
-const SCREENSHOTS_DIR = 'assets/screenshots';
+const SCREENSHOTS_DIR = 'docs';
 const SCREENSHOTS = [
   {
-    name: 'dark-homepage',
-    description: 'Dark theme homepage',
+    name: 'home',
+    description: 'Homepage hero & navbar',
     viewport: { width: 1440, height: 900 },
     scrollTo: null,
-    theme: 'dark'
+    theme: 'light'
+  },
+  {
+    name: 'menu',
+    description: 'Menu section with aligned cards/buttons',
+    viewport: { width: 1440, height: 900 },
+    scrollTo: '#menu',
+    theme: 'light'
+  },
+  {
+    name: 'reviews',
+    description: 'Reviews section with carousel',
+    viewport: { width: 1440, height: 900 },
+    scrollTo: '#testimonials',
+    theme: 'light'
+  },
+  {
+    name: 'subscribe',
+    description: 'Newsletter/subscribe section (fixed design)',
+    viewport: { width: 1440, height: 900 },
+    scrollTo: '#subscribe',
+    theme: 'light'
   }
 ];
 
@@ -33,6 +54,17 @@ async function getTargetUrl() {
     if (response.ok) {
       console.log('🚀 Found dev server, using localhost:5173');
       return 'http://localhost:5173/';
+    }
+  } catch (error) {
+    // Dev server not running
+  }
+  
+  // Check if dev server is running on port 5174
+  try {
+    const response = await fetch('http://localhost:5174/foodfun/');
+    if (response.ok) {
+      console.log('🚀 Found dev server, using localhost:5174');
+      return 'http://localhost:5174/foodfun/';
     }
   } catch (error) {
     // Dev server not running
@@ -102,13 +134,16 @@ async function takeScreenshot(page, screenshot, targetUrl) {
     // Scroll to specific section if needed
     if (scrollTo) {
       try {
+        console.log(`📍 Scrolling to ${scrollTo}...`);
         const element = await page.$(scrollTo) || 
                        await page.$(`section[data-section="${scrollTo.replace('#', '')}"]`) ||
                        await page.$(`[id="${scrollTo.replace('#', '')}"]`);
         
         if (element) {
           await element.evaluate(el => el.scrollIntoView({ behavior: 'instant', block: 'start' }));
-          await new Promise(resolve => setTimeout(resolve, 400));
+          // Wait for any animations or loading to complete
+          await new Promise(resolve => setTimeout(resolve, 800));
+          console.log(`✅ Scrolled to ${scrollTo}`);
         } else {
           console.log(`⚠️  Could not find element ${scrollTo} for ${name}`);
         }
@@ -136,7 +171,7 @@ async function takeScreenshot(page, screenshot, targetUrl) {
 async function main() {
   console.log('🎬 Starting FoodFun screenshots generation...');
   
-  // Ensure screenshots directory exists
+  // Ensure docs directory exists
   if (!fs.existsSync(SCREENSHOTS_DIR)) {
     fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
     console.log(`📁 Created ${SCREENSHOTS_DIR}/ directory`);
