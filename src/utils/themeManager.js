@@ -40,7 +40,7 @@ class ThemeManager {
     document.documentElement.setAttribute('data-theme', effectiveTheme);
     
     // Update meta theme-color for mobile browsers
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]);
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#0D0F14' : '#FFFFFF');
     }
