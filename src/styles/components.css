@@ -860,16 +860,20 @@
   cursor: pointer;
   box-shadow: var(--shadow-lg);
   transition: all var(--transition-normal);
+  /* Ensure visibility on all backgrounds */
+  backdrop-filter: blur(10px);
 }
 
 .theme-toggle:hover {
-  background: var(--brand-2);
+  background: var(--brand-hover);
   transform: scale(1.1);
 }
 
 .theme-toggle svg {
   width: 24px;
   height: 24px;
+  /* Ensure icon is visible */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
 
 /* Mobile theme toggle positioning */
@@ -877,9 +881,11 @@
   .theme-toggle {
     bottom: max(16px, env(safe-area-inset-bottom));
     right: max(16px, env(safe-area-inset-right));
-    width: clamp(40px, 12vw, 48px);
-    height: clamp(40px, 12vw, 48px);
+    width: clamp(44px, 12vw, 48px);
+    height: clamp(44px, 12vw, 48px);
     z-index: 1001;
+    /* Enhanced mobile visibility */
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(247, 181, 0, 0.3);
   }
   
   .theme-toggle svg {
@@ -900,6 +906,40 @@
     width: 18px;
     height: 18px;
   }
+}
+
+/* Ultra-small mobile support */
+@media (max-width: 375px) {
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    bottom: 12px;
+    right: 12px;
+  }
+  
+  .theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Ensure theme toggle is always visible */
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+  transform: scale(1.05);
+}
+
+/* Dark mode specific theme toggle styling */
+[data-theme="dark"] .theme-toggle {
+  background: var(--brand);
+  color: var(--text);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(247, 181, 0, 0.2);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: var(--brand-hover);
+  box-shadow: var(--shadow-xl), 0 0 25px rgba(247, 181, 0.3);
 }
 
 /* ===== TOAST SYSTEM ===== */

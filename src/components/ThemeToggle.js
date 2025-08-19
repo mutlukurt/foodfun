@@ -14,6 +14,50 @@ export class ThemeToggle {
     window.addEventListener('themechange', () => {
       this.updateIcon();
     });
+
+    // Handle mobile-specific positioning
+    this.handleMobilePositioning();
+  }
+
+  handleMobilePositioning() {
+    // Adjust position based on screen size and orientation
+    const updatePosition = () => {
+      const toggle = document.querySelector('.theme-toggle');
+      if (!toggle) return;
+
+      const isMobile = window.innerWidth <= 768;
+      const isLandscape = window.innerHeight < window.innerWidth;
+      
+      if (isMobile) {
+        // Mobile positioning with safe area support
+        toggle.style.bottom = 'max(16px, env(safe-area-inset-bottom))';
+        toggle.style.right = 'max(16px, env(safe-area-inset-right))';
+        
+        // Adjust size for very small screens
+        if (window.innerWidth <= 375) {
+          toggle.style.width = '44px';
+          toggle.style.height = '44px';
+        } else {
+          toggle.style.width = '48px';
+          toggle.style.height = '48px';
+        }
+      } else {
+        // Desktop positioning
+        toggle.style.bottom = 'var(--space-lg)';
+        toggle.style.right = 'var(--space-lg)';
+        toggle.style.width = '56px';
+        toggle.style.height = '56px';
+      }
+    };
+
+    // Initial position
+    updatePosition();
+    
+    // Update on resize and orientation change
+    window.addEventListener('resize', updatePosition);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(updatePosition, 100);
+    });
   }
 
   createThemeToggle() {
@@ -23,6 +67,8 @@ export class ThemeToggle {
     toggle.className = 'theme-toggle';
     toggle.setAttribute('aria-label', 'Toggle dark/light theme');
     toggle.setAttribute('title', 'Toggle theme');
+    toggle.setAttribute('role', 'button');
+    toggle.setAttribute('tabindex', '0');
     
     // Create icon based on current theme
     const icon = this.createThemeIcon();
@@ -123,6 +169,14 @@ export class ThemeToggle {
     
     toggle.addEventListener('click', () => {
       this.handleThemeToggle();
+    });
+
+    // Keyboard support for accessibility
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.handleThemeToggle();
+      }
     });
   }
 

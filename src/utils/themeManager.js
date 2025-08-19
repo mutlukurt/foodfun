@@ -16,6 +16,28 @@ class ThemeManager {
         this.applyTheme();
       }
     });
+
+    // Handle mobile browser specific cases
+    this.handleMobileBrowserSupport();
+  }
+
+  handleMobileBrowserSupport() {
+    // iOS Safari and Android Chrome specific handling
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Force re-application of theme for mobile browsers
+      window.addEventListener('orientationchange', () => {
+        setTimeout(() => this.applyTheme(), 100);
+      });
+      
+      // Handle viewport changes on mobile
+      window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+          this.applyTheme();
+        }
+      });
+    }
   }
 
   loadTheme() {
@@ -44,6 +66,15 @@ class ThemeManager {
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#0D0F14' : '#FFFFFF');
     }
+
+    // Update body class for additional mobile support
+    document.body.classList.remove('theme-light', 'theme-dark');
+    document.body.classList.add(`theme-${effectiveTheme}`);
+
+    // Dispatch custom event for components to react
+    window.dispatchEvent(new CustomEvent('themechange', { 
+      detail: { theme: effectiveTheme } 
+    }));
   }
 
   setTheme(theme) {

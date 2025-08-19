@@ -5,81 +5,65 @@ import fs from 'fs';
 import path from 'path';
 
 const SCREENSHOTS_DIR = 'docs';
+const BASE_URL = 'http://localhost:5173/foodfun/';
 const SCREENSHOTS = [
   {
-    name: 'home',
-    description: 'Homepage hero & navbar',
+    name: 'home-light',
+    description: 'Homepage hero & navbar (Light Theme)',
     viewport: { width: 1440, height: 900 },
     scrollTo: null,
     theme: 'light'
   },
   {
-    name: 'menu',
-    description: 'Menu section with aligned cards/buttons',
+    name: 'home-dark',
+    description: 'Homepage hero & navbar (Dark Theme)',
+    viewport: { width: 1440, height: 900 },
+    scrollTo: null,
+    theme: 'dark'
+  },
+  {
+    name: 'menu-light',
+    description: 'Menu section with aligned cards/buttons (Light Theme)',
     viewport: { width: 1440, height: 900 },
     scrollTo: '#menu',
     theme: 'light'
   },
   {
-    name: 'reviews',
-    description: 'Reviews section with carousel',
+    name: 'menu-dark',
+    description: 'Menu section with aligned cards/buttons (Dark Theme)',
+    viewport: { width: 1440, height: 900 },
+    scrollTo: '#menu',
+    theme: 'dark'
+  },
+  {
+    name: 'reviews-light',
+    description: 'Reviews section with carousel (Light Theme)',
     viewport: { width: 1440, height: 900 },
     scrollTo: '#testimonials',
     theme: 'light'
   },
   {
-    name: 'subscribe',
-    description: 'Newsletter/subscribe section (fixed design)',
+    name: 'reviews-dark',
+    description: 'Reviews section with carousel (Dark Theme)',
+    viewport: { width: 1440, height: 900 },
+    scrollTo: '#testimonials',
+    theme: 'dark'
+  },
+  {
+    name: 'subscribe-light',
+    description: 'Newsletter/subscribe section (Light Theme)',
     viewport: { width: 1440, height: 900 },
     scrollTo: '#subscribe',
     theme: 'light'
+  },
+  {
+    name: 'subscribe-dark',
+    description: 'Newsletter/subscribe section (Dark Theme)',
+    viewport: { width: 1440, height: 900 },
+    scrollTo: '#subscribe',
+    theme: 'dark'
   }
 ];
-
-async function getTargetUrl() {
-  // Check if dev server is running on port 5175
-  try {
-    const response = await fetch('http://localhost:5175/foodfun/');
-    if (response.ok) {
-      console.log('🚀 Found dev server, using localhost:5175');
-      return 'http://localhost:5175/foodfun/';
-    }
-  } catch (error) {
-    // Dev server not running
-  }
-  
-  // Check if dev server is running on port 5173
-  try {
-    const response = await fetch('http://localhost:5173/');
-    if (response.ok) {
-      console.log('🚀 Found dev server, using localhost:5173');
-      return 'http://localhost:5173/';
-    }
-  } catch (error) {
-    // Dev server not running
-  }
-  
-  // Check if dev server is running on port 5174
-  try {
-    const response = await fetch('http://localhost:5174/foodfun/');
-    if (response.ok) {
-      console.log('🚀 Found dev server, using localhost:5174');
-      return 'http://localhost:5174/foodfun/';
-    }
-  } catch (error) {
-    // Dev server not running
-  }
-  
-  // Check if dist exists (built version)
-  if (fs.existsSync('dist')) {
-    console.log('📁 Found dist/ directory, using built version');
-    return 'http://localhost:4173/foodfun/';
-  }
-  
-  // Fallback to live URL
-  console.log('🌐 Using live URL');
-  return 'https://mutlukurt.github.io/foodfun/';
-}
 
 async function takeScreenshot(page, screenshot, targetUrl) {
   const { name, description, viewport, scrollTo, theme } = screenshot;
@@ -97,38 +81,34 @@ async function takeScreenshot(page, screenshot, targetUrl) {
       timeout: 60000 
     });
     
-    // Set theme if needed
-    if (theme === 'dark') {
-      try {
-        console.log(`🌙 Setting dark theme for ${name}...`);
+    // Set theme and reload page
+    try {
+      console.log(`🎨 Setting ${theme} theme for ${name}...`);
+      
+      await page.evaluate((theme) => {
+        // Set localStorage first
+        localStorage.setItem('theme', theme);
         
-        // Set theme via JavaScript - more reliable approach
-        await page.evaluate(() => {
-          // Set localStorage first
-          localStorage.setItem('theme', 'dark');
-          
-          // Apply theme immediately
-          document.documentElement.setAttribute('data-theme', 'dark');
-          
-          // Also update meta theme-color if it exists
-          const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-          if (metaThemeColor) {
-            metaThemeColor.setAttribute('content', '#0D0F14');
-          }
-          
-          // Force any CSS custom properties to update
-          document.body.style.display = 'none';
-          document.body.offsetHeight; // trigger reflow
-          document.body.style.display = '';
-        });
+        // Apply theme immediately
+        document.documentElement.setAttribute('data-theme', theme);
         
-        // Wait longer for theme transition and any CSS changes
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log(`✅ Dark theme applied for ${name}`);
-        
-      } catch (error) {
-        console.log(`⚠️  Could not set dark theme for ${name}: ${error.message}`);
-      }
+        // Also update meta theme-color if it exists
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+          const color = theme === 'dark' ? '#0D0F14' : '#ffffff';
+          metaThemeColor.setAttribute('content', color);
+        }
+      }, theme);
+      
+      // Reload the page to ensure theme is fully applied
+      await page.reload({ waitUntil: 'networkidle0' });
+      
+      // Wait for theme transition and any CSS changes
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log(`✅ ${theme} theme applied for ${name}`);
+      
+    } catch (error) {
+      console.log(`⚠️  Could not set ${theme} theme for ${name}: ${error.message}`);
     }
     
     // Scroll to specific section if needed
@@ -152,6 +132,9 @@ async function takeScreenshot(page, screenshot, targetUrl) {
       }
     }
     
+    // Wait for fonts/images and network idle before capture
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
     // Take screenshot
     await page.screenshot({ 
       path: filepath, 
@@ -159,7 +142,11 @@ async function takeScreenshot(page, screenshot, targetUrl) {
       type: 'png' 
     });
     
-    console.log(`✅ ${description} saved to ${filepath}`);
+    // Get file size for verification
+    const stats = fs.statSync(filepath);
+    const fileSizeInKB = Math.round(stats.size / 1024);
+    
+    console.log(`✅ ${description} saved to ${filepath} (${fileSizeInKB}KB)`);
     return true;
     
   } catch (error) {
@@ -170,16 +157,13 @@ async function takeScreenshot(page, screenshot, targetUrl) {
 
 async function main() {
   console.log('🎬 Starting FoodFun screenshots generation...');
+  console.log(`🎯 Base URL: ${BASE_URL}`);
   
   // Ensure docs directory exists
   if (!fs.existsSync(SCREENSHOTS_DIR)) {
     fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
     console.log(`📁 Created ${SCREENSHOTS_DIR}/ directory`);
   }
-  
-  // Get target URL
-  const targetUrl = await getTargetUrl();
-  console.log(`🎯 Target URL: ${targetUrl}`);
   
   // Launch browser
   let browser;
@@ -209,7 +193,7 @@ async function main() {
   let totalCount = SCREENSHOTS.length;
   
   for (const screenshot of SCREENSHOTS) {
-    const success = await takeScreenshot(page, screenshot, targetUrl);
+    const success = await takeScreenshot(page, screenshot, BASE_URL);
     if (success) successCount++;
   }
   

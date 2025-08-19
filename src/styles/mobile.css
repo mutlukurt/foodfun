@@ -25,6 +25,12 @@
     top: 70px;
     padding: var(--space-md);
   }
+
+  /* Ensure mobile menu inherits dark mode properly */
+  [data-theme="dark"] .navbar-menu {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
 }
 
 /* Mobile form improvements */
@@ -99,206 +105,89 @@
   .fi svg {
     width: 100% !important;
     height: 100% !important;
-    display: block;
-  }
-  
-  /* Mobile-specific positioning for floating ingredients */
-  .fi[data-name="avocado"] {
-    top: 10%;
-    right: 15%;
-  }
-  
-  .fi[data-name="tomato"] {
-    top: 18%;
-    right: 8%;
-  }
-  
-  .fi[data-name="lemon"] {
-    top: 45%;
-    left: 10%;
-  }
-  
-  .fi[data-name="herb"] {
-    top: 25%;
-    right: 25%;
-  }
-  
-  /* Reduce animation on mobile for better performance */
-  @media (prefers-reduced-motion: reduce) {
-    .fi {
-      animation: none;
-    }
   }
 }
 
-/* ===== MOBILE LAYOUT IMPROVEMENTS ===== */
+/* ===== MOBILE DARK MODE ENHANCEMENTS ===== */
 @media (max-width: 767px) {
-  /* Ensure proper container behavior on mobile */
-  .container {
-    overflow-x: hidden;
+  /* Ensure all sections inherit dark mode properly */
+  [data-theme="dark"] .hero-section,
+  [data-theme="dark"] .about-section,
+  [data-theme="dark"] .why-us-section,
+  [data-theme="dark"] .menu-section,
+  [data-theme="dark"] .testimonials-section,
+  [data-theme="dark"] .newsletter-section {
+    background-color: var(--bg);
   }
-  
-  /* Fix any potential horizontal scrolling issues */
-  body {
-    overflow-x: hidden;
+
+  [data-theme="dark"] .why-us-section,
+  [data-theme="dark"] .testimonials-section {
+    background-color: var(--bg-2);
   }
-  
-  /* Ensure images don't overflow containers */
-  img, svg {
-    max-width: 100%;
-    height: auto;
+
+  /* Mobile card dark mode */
+  [data-theme="dark"] .card,
+  [data-theme="dark"] .menu-card,
+  [data-theme="dark"] .why-us-card,
+  [data-theme="dark"] .testimonial {
+    background-color: var(--card);
+    border-color: var(--border);
+  }
+
+  /* Mobile text dark mode */
+  [data-theme="dark"] .text-muted,
+  [data-theme="dark"] .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  /* Mobile button dark mode */
+  [data-theme="dark"] .btn-secondary {
+    color: var(--text);
+    border-color: var(--brand);
   }
 }
 
-/* ===== FINAL MOBILE LAYOUT IMPROVEMENTS ===== */
-
-/* Ensure perfect mobile layout for 320-414px screens */
-@media (max-width: 414px) {
-  /* Container and spacing */
-  .container {
-    padding-inline: clamp(8px, 3vw, 16px);
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  /* Hero section mobile optimization */
-  .hero-section {
-    padding: var(--space-lg) 0;
-    min-height: 50vh;
-  }
-  
-  .hero-container {
-    gap: var(--space-md);
-    min-height: 50vh;
-  }
-  
-  .hero-image {
-    width: min(70vw, 280px);
-    height: min(70vw, 280px);
-  }
-  
-  .hero-buttons {
-    gap: var(--space-xs);
-  }
-  
-  .hero-buttons .btn {
-    width: 100%;
-    max-width: min(85vw, 280px);
-    padding: clamp(10px, 2.6vw, 14px) clamp(14px, 4vw, 18px);
-  }
-  
-  /* Menu section mobile optimization */
-  .menu-section {
-    padding: var(--space-lg) 0;
-  }
-  
-  .menu-grid {
-    gap: 12px;
-  }
-  
-  .menu-card {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  /* Why us section mobile optimization */
-  .why-us-section {
-    padding: var(--space-lg) 0;
-  }
-  
-  .why-us-grid {
-    gap: 12px;
-  }
-  
-  .why-us-card {
-    padding: var(--space-md);
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  /* Testimonials mobile optimization */
-  .testimonials-section {
-    padding: var(--space-lg) 0;
-  }
-  
-  .testimonial {
-    padding: var(--space-sm);
-  }
-  
-  /* Newsletter mobile optimization */
-  .newsletter-section {
-    padding: var(--space-lg) 0;
-  }
-  
-  .newsletter-form {
-    gap: var(--space-sm);
-  }
-  
-  .newsletter-input,
-  .newsletter-btn {
-    width: 100%;
-    height: 48px;
-  }
-  
-  /* Footer mobile optimization */
-  .footer {
-    padding: var(--space-lg) 0 var(--space-md);
-  }
-  
-  .footer-container {
-    gap: var(--space-md);
-  }
-  
-  /* Theme toggle mobile positioning */
+/* ===== MOBILE THEME TOGGLE OPTIMIZATIONS ===== */
+@media (max-width: 767px) {
   .theme-toggle {
-    bottom: 16px;
-    right: 16px;
+    /* Enhanced mobile positioning */
+    position: fixed;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    right: max(16px, env(safe-area-inset-right));
+    width: 48px;
+    height: 48px;
+    z-index: 1001;
+    /* Enhanced visibility */
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(247, 181, 0, 0.3);
+    /* Ensure touch target size */
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Dark mode theme toggle on mobile */
+  [data-theme="dark"] .theme-toggle {
+    background-color: var(--brand);
+    color: var(--text);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(247, 181, 0, 0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
     width: 44px;
     height: 44px;
-    z-index: 1001;
+    bottom: 16px;
+    right: 16px;
   }
   
   .theme-toggle svg {
     width: 18px;
     height: 18px;
-  }
-  
-  /* Floating ingredients mobile optimization */
-  .fi {
-    width: clamp(20px, 5vw, 32px);
-  }
-  
-  /* Ensure no horizontal scroll */
-  .section,
-  .hero,
-  .menu,
-  .about,
-  .why-us,
-  .testimonials,
-  .newsletter {
-    max-width: 100%;
-    overflow: hidden;
-    width: 100%;
-  }
-  
-  /* Button improvements for mobile */
-  .btn {
-    min-height: 48px;
-    min-width: 48px;
-    padding: clamp(10px, 2.6vw, 14px) clamp(14px, 4vw, 18px);
-    font-size: clamp(14px, 3.5vw, 16px);
-  }
-  
-  /* Card improvements for mobile */
-  .card {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: var(--space-md);
   }
 }
 
@@ -347,5 +236,60 @@
   .theme-toggle svg {
     width: 16px;
     height: 16px;
+  }
+}
+
+/* ===== MOBILE LANDSCAPE ORIENTATION SUPPORT ===== */
+@media (max-width: 767px) and (orientation: landscape) {
+  .theme-toggle {
+    /* Adjust for landscape mode */
+    bottom: max(12px, env(safe-area-inset-bottom));
+    right: max(12px, env(safe-area-inset-right));
+  }
+}
+
+/* ===== MOBILE SAFE AREA SUPPORT ===== */
+@supports (padding: max(0px)) {
+  @media (max-width: 767px) {
+    .theme-toggle {
+      bottom: max(16px, env(safe-area-inset-bottom));
+      right: max(16px, env(safe-area-inset-right));
+    }
+  }
+}
+
+/* ===== MOBILE ACCESSIBILITY IMPROVEMENTS ===== */
+@media (max-width: 767px) {
+  /* Ensure minimum touch target sizes */
+  .btn,
+  .navbar-link,
+  .menu-carousel-btn,
+  .testimonials-btn,
+  .theme-toggle {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve focus visibility on mobile */
+  .btn:focus-visible,
+  .navbar-link:focus-visible,
+  .menu-carousel-btn:focus-visible,
+  .testimonials-btn:focus-visible,
+  .theme-toggle:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 2px;
+  }
+  
+  /* Better contrast for mobile */
+  .text-muted {
+    color: var(--text);
+    opacity: 0.8;
+  }
+
+  /* Enhanced theme toggle focus on mobile */
+  .theme-toggle:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 2px;
+    transform: scale(1.05);
   }
 }
