@@ -26,28 +26,23 @@ A modern, responsive restaurant landing page built with **Vite**, **Vanilla Java
 ## 📸 Project Screenshots
 
 ### Homepage
-**Light**
-![Homepage Light](./docs/home-light.png)
-**Dark**
-![Homepage Dark](./docs/home-dark.png)
+**Dark Theme**
+![Dark Homepage](./assets/screenshots/dark-homepage.png)
 
-### Menu
-**Light**
-![Menu Light](./docs/menu-light.png)
-**Dark**
-![Menu Dark](./docs/menu-dark.png)
+### About Section
+![About Section](./assets/screenshots/about-section.png)
 
-### Reviews
-**Light**
-![Reviews Light](./docs/reviews-light.png)
-**Dark**
-![Reviews Dark](./docs/reviews-dark.png)
+### Testimonials
+![Testimonials](./assets/screenshots/testimonials.png)
 
-### Subscribe
-**Light**
-![Subscribe Light](./docs/subscribe-light.png)
-**Dark**
-![Subscribe Dark](./docs/subscribe-dark.png)
+### Mobile View
+![Mobile View](./assets/screenshots/mobile-view.png)
+
+### Dashboard
+![Dashboard](./assets/screenshots/dashboard.png)
+
+### Workspace
+![Workspace](./assets/screenshots/workspace.png)
 
 ## 🛠️ Tech Stack
 
