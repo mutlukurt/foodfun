@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-✅%20Deployed-success)](https://pages.github.com/)
 
+## 🌐 Live Demo
+
+**Visit the live site**: [https://mutlukurt.github.io/foodfun/](https://mutlukurt.github.io/foodfun/)
+
 A modern, responsive restaurant landing page built with **Vite**, **Vanilla JavaScript**, and **CSS**. Features a beautiful design with dark/light theme support, interactive components, and mobile-first responsive design.
 
 ## ✨ Features
@@ -160,10 +164,6 @@ foodfun/
 - **Container**: Max-width 1200px with responsive padding
 - **Grid System**: CSS Grid for layouts, Flexbox for components
 - **Spacing Scale**: 8px base unit system (0.5rem, 1rem, 1.5rem, etc.)
-
-## 🌐 Live Demo
-
-**Visit the live site**: [https://mutlukurt.github.io/foodfun/](https://mutlukurt.github.io/foodfun/)
 
 ## 📱 Browser Support
 
